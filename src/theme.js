@@ -21,8 +21,8 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    fontSize: 18,
-    htmlFontSize: 18,
+    fontSize: 14,
+    htmlFontSize: 16,
     button: {
       textTransform: "none",
     },

@@ -1,5 +1,5 @@
 import React from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
+import { fade, makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,7 +10,7 @@ import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
+import Divider from "@material-ui/core/Divider";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
@@ -18,6 +18,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -107,6 +108,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     margin: theme.spacing(1),
   },
+  button: {
+    fontSize: 18,
+  },
 }));
 
 function Navbar() {
@@ -175,6 +179,34 @@ function Navbar() {
   );
 }
 
+const StyledMenu = withStyles({
+  "& .MuiList-padding": {
+    padding: 0, //TODO: apply this
+  },
+})((props) => (
+  <Menu
+    elevation={1}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "center",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "center",
+    }}
+    {...props}
+  />
+));
+
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+      fontSize: 14,
+    },
+  },
+}))(MenuItem);
+
 export default function Header() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -202,18 +234,37 @@ export default function Header() {
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
-    <Menu
+    <StyledMenu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: "top", horizontal: "center" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      getContentAnchorEl={null}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
+      <StyledMenuItem onClick={handleMenuClose}>
+        <ListItemText
+          primary="Signed in as: "
+          secondary="salmaan.a.qadir@gmail.com"
+        />
+      </StyledMenuItem>
+      <Divider />
+      <StyledMenuItem onClick={handleMenuClose}>
+        <ListItemText primary="My account" />
+      </StyledMenuItem>
+      <StyledMenuItem onClick={handleMenuClose}>
+        <ListItemText primary="Auction Dashboard" />
+      </StyledMenuItem>
+      <StyledMenuItem onClick={handleMenuClose}>
+        <ListItemText primary="Settings" />
+      </StyledMenuItem>
+      <Divider />
+      <StyledMenuItem onClick={handleMenuClose}>
+        <ListItemText primary="Logout" />
+      </StyledMenuItem>
+    </StyledMenu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
