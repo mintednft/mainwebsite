@@ -2,8 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 
-import Heading from "../../../components/Heading";
-import DropList from "../../../components/DropList";
+import Heading from "./Heading";
+import DropList from "./DropList";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
