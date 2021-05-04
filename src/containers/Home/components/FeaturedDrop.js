@@ -67,7 +67,7 @@ export default function FeaturedDrop() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Heading>Featured drop</Heading>
+      <Heading live>Featured drop</Heading>
       <Container maxWidth="md" className={classes.container}>
         <Grid container spacing={2}>
           <Grid item md={6}>

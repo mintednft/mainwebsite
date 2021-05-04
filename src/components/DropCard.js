@@ -11,7 +11,6 @@ import Countdown from "./Countdown";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 282,
-    margin: "auto",
     borderRadius: theme.spacing(1.25),
   },
   media: {

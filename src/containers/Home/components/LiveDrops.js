@@ -9,21 +9,13 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     margin: "auto",
   },
-  h2: {
-    fontWeight: 700,
-    fontSize: 64,
-  },
-  h5: {
-    fontWeight: 400,
-    fontSize: 24,
-  },
 }));
 
 export default function LiveDrops() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Heading>Live drops</Heading>
+      <Heading live>Live drops</Heading>
       <DropList />
     </div>
   );
