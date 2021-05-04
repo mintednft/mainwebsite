@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Home from "./containers/Home";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -36,6 +37,7 @@ function App() {
             </Route>
           </Switch>
         </Container>
+        <Footer />
       </div>
     </Router>
   );

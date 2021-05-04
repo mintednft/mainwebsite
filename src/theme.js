@@ -3,6 +3,16 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 // A custom theme for this app
 const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        a: {
+          textDecoration: "none",
+          color: "#000",
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       main: "#18182B",
