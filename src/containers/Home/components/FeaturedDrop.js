@@ -66,7 +66,10 @@ export default function FeaturedDrop() {
     <div className={classes.wrapper}>
       <Grid container spacing={2}>
         <Grid item md={6}>
-          <img src="/assets/dummydrop.png" className={classes.img} />
+          <img
+            src={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
+            className={classes.img}
+          />
           <Button size="large" className={classes.handleButton}>
             @russellwilson
           </Button>

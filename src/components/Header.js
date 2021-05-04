@@ -311,7 +311,7 @@ export default function Header() {
     <div className={classes.grow}>
       <AppBar position="static" color="inherit" elevation={0}>
         <Toolbar className={classes.toolbar}>
-          <img src="/assets/logo.png" />
+          <img src={process.env.PUBLIC_URL + "/assets/logo.png"} />
           <div className={classes.grow} />
           <Navbar />
           <div className={classes.grow} />
