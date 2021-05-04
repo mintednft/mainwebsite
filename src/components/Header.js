@@ -19,7 +19,8 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import cx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -107,6 +108,11 @@ const useStyles = makeStyles((theme) => ({
   link: {
     fontSize: 14,
     margin: theme.spacing(1),
+    "&.active": {
+      background: theme.palette.primary.main,
+      color: theme.palette.background.default,
+      borderRadius: theme.spacing(1.25),
+    },
   },
   button: {
     fontSize: 18,
@@ -123,7 +129,7 @@ function Navbar() {
           <Button
             className={classes.link}
             size="small"
-            component={Link}
+            component={NavLink}
             to={"/marketplace"}
           >
             Marketplace
@@ -133,10 +139,10 @@ function Navbar() {
           <Button
             className={classes.link}
             size="small"
-            component={Link}
+            component={NavLink}
             to={"/drops"}
           >
-            Drops
+            ⚡️Drops⚡
           </Button>
         </Grid>
         <Grid item xs={4}>
@@ -158,7 +164,7 @@ function Navbar() {
           <Button
             className={classes.link}
             size="small"
-            component={Link}
+            component={NavLink}
             to={"/influencers"}
           >
             Influencers
@@ -168,7 +174,7 @@ function Navbar() {
           <Button
             className={classes.link}
             size="small"
-            component={Link}
+            component={NavLink}
             to={"/artists"}
           >
             Artists
