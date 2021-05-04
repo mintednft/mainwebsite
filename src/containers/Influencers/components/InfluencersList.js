@@ -1,10 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
 
-import Heading from "./Heading";
-import CardList from "./CardList";
-import DropCard from "./DropCard";
+import Heading from "../../../components/Heading";
+import CardList from "../../../components/CardList";
+import InfluencerCard from "../../../components/InfluencerCard";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -16,10 +15,8 @@ export default function LiveDrops() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Heading live action={{ href: "/drops", label: "View all drops" }}>
-        Live drops
-      </Heading>
-      <CardList card={DropCard} />
+      <Heading>Influencers</Heading>
+      <CardList card={InfluencerCard} />
     </div>
   );
 }

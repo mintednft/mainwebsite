@@ -29,6 +29,10 @@ const theme = createMuiTheme({
     text: {
       primary: "#18182B",
     },
+    grey: {
+      300: "#d9d9d9",
+      500: "#8c8c8c",
+    },
   },
   typography: {
     fontSize: 14,
@@ -36,6 +40,12 @@ const theme = createMuiTheme({
     button: {
       textTransform: "none",
     },
+    h5: {
+      fontWeight: 500,
+    },
+  },
+  shape: {
+    borderRadius: 10,
   },
 });
 

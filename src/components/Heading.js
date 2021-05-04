@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   action: {
     fontWeight: 500,
-    color: "#8c8c8c",
+    color: theme.palette.grey[500],
   },
   "@global": {
     "@keyframes blinker": {

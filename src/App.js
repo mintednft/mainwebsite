@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./containers/Home";
 import Drops from "./containers/Drops";
+import Influencers from "./containers/Influencers";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -34,7 +35,9 @@ function App() {
             <Route path="/drops">
               <Drops />
             </Route>
-            <Route path="/influencers"></Route>
+            <Route path="/influencers">
+              <Influencers />
+            </Route>
             <Route path="/artists"></Route>
             <Route path="/">
               <Home />

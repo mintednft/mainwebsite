@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
   },
   social: {
-    color: "#262626",
     "& > .MuiIconButton-root": {
+      color: "#262626",
       margin: theme.spacing(0, 1),
     },
   },

@@ -1,14 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import LiveDrops from "../../components/LiveDrops";
+import InfluencersList from "./components/InfluencersList";
 
 const useStyles = makeStyles((theme) => ({}));
 
-export default function Drops() {
+export default function Influencers() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <LiveDrops />
+      <InfluencersList />
     </React.Fragment>
   );
 }
