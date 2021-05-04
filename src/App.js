@@ -1,6 +1,3 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./containers/Home";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import {
@@ -11,6 +8,10 @@ import {
   useRouteMatch,
   useParams,
 } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./containers/Home";
+import Drops from "./containers/Drops";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -30,7 +31,9 @@ function App() {
         <Container maxWidth="lg" fixed className={classes.main}>
           <Switch>
             <Route path="/marketplace"></Route>
-            <Route path="/drops"></Route>
+            <Route path="/drops">
+              <Drops />
+            </Route>
             <Route path="/influencers"></Route>
             <Route path="/artists"></Route>
             <Route path="/">
