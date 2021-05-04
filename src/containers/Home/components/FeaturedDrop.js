@@ -1,11 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Grid, Button } from "@material-ui/core";
+import { Typography, Grid, Button, Container } from "@material-ui/core";
 import Countdown from "../../../components/Countdown";
 import cx from "clsx";
 
+import Heading from "../../../components/Heading";
+
 const useStyles = makeStyles((theme) => ({
-  wrapper: {
+  wrapper: {},
+  container: {
     textAlign: "center",
     margin: "auto",
     maxWidth: 1024,
@@ -64,56 +67,59 @@ export default function FeaturedDrop() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Grid container spacing={2}>
-        <Grid item md={6}>
-          <img
-            src={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
-            className={classes.img}
-          />
-          <Button size="large" className={classes.handleButton}>
-            @russellwilson
-          </Button>
-        </Grid>
-        <Grid item md={6}>
-          <Typography variant="h2" className={classes.h2}>
-            Night Universe Sky [Vale of Memory]
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={6} justify="flex-start">
-              <Typography variant="h5" className={classes.h5}>
-                Current Bid
-              </Typography>
-              <Typography variant="h4" className={classes.h4}>
-                $7,998
-              </Typography>
-              <Typography variant="h5" className={classes.h5}>
-                2.4 ETH
-              </Typography>
+      <Heading>Featured drop</Heading>
+      <Container maxWidth="md" className={classes.container}>
+        <Grid container spacing={2}>
+          <Grid item md={6}>
+            <img
+              src={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
+              className={classes.img}
+            />
+            <Button size="large" className={classes.handleButton}>
+              @russellwilson
+            </Button>
+          </Grid>
+          <Grid item md={6}>
+            <Typography variant="h2" className={classes.h2}>
+              Night Universe Sky [Vale of Memory]
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={6} justify="flex-start">
+                <Typography variant="h5" className={classes.h5}>
+                  Current Bid
+                </Typography>
+                <Typography variant="h4" className={classes.h4}>
+                  $7,998
+                </Typography>
+                <Typography variant="h5" className={classes.h5}>
+                  2.4 ETH
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="h5" className={classes.h5}>
+                  Auction ending in
+                </Typography>
+                <Countdown withText />
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h5" className={classes.h5}>
-                Auction ending in
-              </Typography>
-              <Countdown withText />
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Button
+                  size="large"
+                  className={cx(classes.button, classes.primaryBtn)}
+                >
+                  Place a bid
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button size="large" className={cx(classes.button)}>
+                  View details
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Button
-                size="large"
-                className={cx(classes.button, classes.primaryBtn)}
-              >
-                Place a bid
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button size="large" className={cx(classes.button)}>
-                View details
-              </Button>
-            </Grid>
-          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </div>
   );
 }

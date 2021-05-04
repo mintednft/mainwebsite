@@ -2,10 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 
+import Heading from "../../../components/Heading";
+import DropList from "../../../components/DropList";
+
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    textAlign: "center",
-    maxWidth: 920,
     margin: "auto",
   },
   h2: {
@@ -18,17 +19,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Hero() {
+export default function LiveDrops() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Typography variant="h2" className={classes.h2}>
-        NFTs for Social Good
-      </Typography>
-      <Typography variant="h5" className={classes.h5}>
-        Minted converts your social media into social impact. Proceeds go
-        towards the people and causes you care about.
-      </Typography>
+      <Heading>Live drops</Heading>
+      <DropList />
     </div>
   );
 }

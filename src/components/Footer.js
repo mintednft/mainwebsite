@@ -48,7 +48,7 @@ export default function Footer() {
 
   return (
     <AppBar
-      position="fixed"
+      position="static"
       color="inherit"
       elevation={0}
       className={classes.appBar}

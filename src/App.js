@@ -15,6 +15,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
     maxWidth: theme.breakpoints.values.lg + 300,
   },
   app: {},

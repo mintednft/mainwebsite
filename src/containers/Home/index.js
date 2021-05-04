@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Hero from "./components/Hero";
 import FeaturedDrop from "./components/FeaturedDrop";
-import Heading from "../../components/Heading";
+import LiveDrops from "./components/LiveDrops";
 
 const useStyles = makeStyles((theme) => ({}));
 
@@ -11,8 +11,8 @@ export default function Home() {
   return (
     <React.Fragment>
       <Hero />
-      <Heading>Featured drop</Heading>
       <FeaturedDrop />
+      <LiveDrops />
     </React.Fragment>
   );
 }

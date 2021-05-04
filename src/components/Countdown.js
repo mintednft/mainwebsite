@@ -10,6 +10,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     maxWidth: 320,
   },
+  miniWrapper: {
+    display: "flex",
+    justifyContent: "space-between",
+    maxWidth: 80,
+    padding: theme.spacing(0.5, 0),
+  },
   h4: {
     fontWeight: 700,
     fontSize: 36,
@@ -18,10 +24,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     fontSize: 24,
   },
+  span: {
+    fontWeight: 500,
+    fontSize: 14,
+  },
 }));
 
 // Random component
-const Completionist = () => <span>You are good to go!</span>;
+const Completionist = () => <span>Bid is expired!</span>;
 
 export default function Countdown({
   time = Date.now() + 100000,
@@ -44,6 +54,21 @@ export default function Countdown({
     if (completed) {
       return <Completionist />;
     } else {
+      if (!withText) {
+        return (
+          <div className={classes.miniWrapper}>
+            <Typography variant="span" className={classes.span}>
+              {hours}h
+            </Typography>
+            <Typography variant="span" className={classes.span}>
+              {minutes}m
+            </Typography>
+            <Typography variant="span" className={classes.span}>
+              {seconds}s
+            </Typography>
+          </div>
+        );
+      }
       return (
         <div className={classes.wrapper}>
           {timeComponent(hours, "Hours")}
