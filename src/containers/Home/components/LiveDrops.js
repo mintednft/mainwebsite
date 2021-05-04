@@ -15,7 +15,9 @@ export default function LiveDrops() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Heading live>Live drops</Heading>
+      <Heading live action={{ href: "/drops", label: "View all drops" }}>
+        Live drops
+      </Heading>
       <DropList />
     </div>
   );

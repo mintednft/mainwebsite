@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -21,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontWeight: 500,
   },
+  action: {
+    fontWeight: 500,
+    color: "#8c8c8c",
+  },
   "@global": {
     "@keyframes blinker": {
       from: {
@@ -33,7 +38,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Heading({ children, live = false }) {
+export default function Heading({
+  children,
+  live = false,
+  action: { href, label } = {},
+}) {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
@@ -44,6 +53,16 @@ export default function Heading({ children, live = false }) {
         {children}
       </Typography>
       <div className={classes.grow}></div>
+      {label && (
+        <Typography
+          variant="h5"
+          component={Link}
+          to={href}
+          className={classes.action}
+        >
+          {label}
+        </Typography>
+      )}
     </div>
   );
 }
