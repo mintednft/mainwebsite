@@ -15,6 +15,7 @@ import Drops from "./containers/Drops";
 import Influencers from "./containers/Influencers";
 import Artists from "./containers/Artists";
 import Marketplace from "./containers/Marketplace";
+import ProfileSection from "./components/ProfileSection";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -27,6 +28,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const DUMMY_CARD_DATA = {
+  coverImg: process.env.PUBLIC_URL + "/assets/seahawk.png",
+  profileImg: process.env.PUBLIC_URL + "/assets/influencer.png",
+  name: "Russell Wilson",
+  handle: "russellwilson",
+  about: "NFL starting QB for the Seattle Seahawks. 2013 Superbowl Champion.",
+  follower_count: 1300000,
+};
+
 function App() {
   const classes = useStyles();
   return (
@@ -34,7 +44,8 @@ function App() {
       <div className={classes.app}>
         <Header />
         <Container maxWidth="lg" fixed className={classes.main}>
-          <Switch>
+          <ProfileSection {...DUMMY_CARD_DATA} />
+          {/* <Switch>
             <Route path="/marketplace">
               <Marketplace />
             </Route>
@@ -50,7 +61,7 @@ function App() {
             <Route path="/">
               <Home />
             </Route>
-          </Switch>
+          </Switch> */}
         </Container>
         <Footer />
       </div>

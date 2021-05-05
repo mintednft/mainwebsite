@@ -35,6 +35,7 @@ const theme = createMuiTheme({
     grey: {
       300: "#d9d9d9",
       500: "#8c8c8c",
+      700: "#595959",
     },
   },
   typography: {
@@ -43,8 +44,21 @@ const theme = createMuiTheme({
     button: {
       textTransform: "none",
     },
+    h3: {
+      fontSize: 36,
+      fontWeight: 700,
+    },
+    h4: {
+      fontWeight: 500,
+      fontSize: 24,
+    },
     h5: {
       fontWeight: 500,
+      fontSize: 18,
+    },
+    h6: {
+      fontWeight: 500,
+      fontSize: 16,
     },
   },
   shape: {
