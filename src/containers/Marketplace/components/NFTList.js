@@ -1,10 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-
-import Heading from "./Heading";
-import CardList from "./CardList";
-import DropCard from "./DropCard";
+import DropCard from "../../../components/DropCard";
+import Heading from "../../../components/Heading";
+import CardList from "../../../components/CardList";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -12,12 +10,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LiveDrops() {
+export default function NFTList() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Heading live action={{ href: "/drops", label: "View all drops" }}>
-        Live drops
+      <Heading live action={{ href: "/drops", label: "View all NFTs" }}>
+        NFTs for Sale
       </Heading>
       <CardList card={DropCard} data={[...new Array(23)]} />
     </div>

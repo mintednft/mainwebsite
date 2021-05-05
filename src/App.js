@@ -14,6 +14,7 @@ import Home from "./containers/Home";
 import Drops from "./containers/Drops";
 import Influencers from "./containers/Influencers";
 import Artists from "./containers/Artists";
+import Marketplace from "./containers/Marketplace";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -34,7 +35,9 @@ function App() {
         <Header />
         <Container maxWidth="lg" fixed className={classes.main}>
           <Switch>
-            <Route path="/marketplace"></Route>
+            <Route path="/marketplace">
+              <Marketplace />
+            </Route>
             <Route path="/drops">
               <Drops />
             </Route>
