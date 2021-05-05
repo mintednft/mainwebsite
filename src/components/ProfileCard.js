@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import FollowButton from "./FollowButton";
-import { formatCash } from "../utils/index";
+import { formatCash, truncateText } from "../utils/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     color: theme.palette.grey[500],
   },
+  cardContent: {
+    height: 80,
+    paddingTop: theme.spacing(0),
+  },
   content: {
     fontSize: 14,
   },
@@ -73,8 +77,10 @@ export default function ProfileCard({
           <Typography className={classes.handle}>@{handle}</Typography>
         }
       />
-      <CardContent>
-        <Typography className={classes.content}>{about}</Typography>
+      <CardContent className={classes.cardContent}>
+        <Typography className={classes.content} title={about}>
+          {truncateText(about)}
+        </Typography>
       </CardContent>
       <Divider />
       <CardActions disableSpacing className={classes.footer}>
