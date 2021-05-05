@@ -1,14 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import InfluencerList from "./components/InfluencerList";
+import ArtistsList from "./components/ArtistList";
 
 const useStyles = makeStyles((theme) => ({}));
 
-export default function Influencers() {
+export default function Artists() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <InfluencerList />
+      <ArtistsList />
     </React.Fragment>
   );
 }

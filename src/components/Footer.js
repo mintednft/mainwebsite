@@ -25,10 +25,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     display: "block",
   },
-  appBar: {
-    top: "auto",
-    bottom: 0,
-  },
+  appBar: {},
   social: {
     "& > .MuiIconButton-root": {
       color: "#262626",
@@ -54,7 +51,10 @@ export default function Footer() {
       className={classes.appBar}
     >
       <Toolbar className={classes.toolbar}>
-        <img src={process.env.PUBLIC_URL + "/assets/icon_logo.png"} />
+        <img
+          alt="footer-logo"
+          src={process.env.PUBLIC_URL + "/assets/icon_logo.png"}
+        />
         <div className={classes.grow} />
         <Container maxWidth="md">
           <Grid container spacing={1}>

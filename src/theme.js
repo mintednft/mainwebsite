@@ -6,6 +6,9 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
+        body: {
+          minHeight: "100vh",
+        },
         a: {
           textDecoration: "none",
           color: "#000",

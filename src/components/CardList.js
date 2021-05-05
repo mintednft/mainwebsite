@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardList({
   card: Card,
-  data = [...new Array(27)],
+  data = [],
   getLink = () => "",
 }) {
   const classes = useStyles();

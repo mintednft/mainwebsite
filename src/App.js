@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import Home from "./containers/Home";
 import Drops from "./containers/Drops";
 import Influencers from "./containers/Influencers";
+import Artists from "./containers/Artists";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -20,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     maxWidth: theme.breakpoints.values.lg + 300,
   },
-  app: {},
+  app: {
+    minHeight: "100%",
+  },
 }));
 
 function App() {
@@ -38,7 +41,9 @@ function App() {
             <Route path="/influencers">
               <Influencers />
             </Route>
-            <Route path="/artists"></Route>
+            <Route path="/artists">
+              <Artists />
+            </Route>
             <Route path="/">
               <Home />
             </Route>
