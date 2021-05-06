@@ -1,15 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
+import ProfileSection from "../../../components/ProfileSection";
 import Heading from "../../../components/Heading";
 import CardList from "../../../components/CardList";
-import ProfileCard from "../../../components/ProfileCard";
-
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    margin: "auto",
-  },
-}));
+import DropCard from "../../../components/DropCard";
 
 const DUMMY_CARD_DATA = {
   coverImg: process.env.PUBLIC_URL + "/assets/seahawk.png",
@@ -20,20 +14,16 @@ const DUMMY_CARD_DATA = {
   follower_count: 1300000,
 };
 
-const getLink = ({ handle }) => {
-  return `/influencers/${handle}`;
-};
+const useStyles = makeStyles((theme) => ({}));
 
-export default function InfluencerList() {
+export default function Influencer() {
   const classes = useStyles();
   return (
-    <div className={classes.wrapper}>
-      <Heading>Influencers</Heading>
-      <CardList
-        card={ProfileCard}
-        data={[...new Array(23)].map((i) => DUMMY_CARD_DATA)}
-        getLink={getLink}
-      />
-    </div>
+    <React.Fragment>
+      <ProfileSection {...DUMMY_CARD_DATA}>
+        <Heading>Releases</Heading>
+        <CardList card={DropCard} data={[...new Array(2)]} />
+      </ProfileSection>
+    </React.Fragment>
   );
 }

@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const getLink = ({ handle }) => {
+  return `/artists/${handle}`;
+};
+
 export default function ArtistList() {
   const classes = useStyles();
   return (
@@ -28,6 +32,7 @@ export default function ArtistList() {
       <CardList
         card={ProfileCard}
         data={[...new Array(23)].map((i) => DUMMY_CARD_DATA)}
+        getLink={getLink}
       />
     </div>
   );

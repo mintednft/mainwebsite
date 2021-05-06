@@ -49,7 +49,7 @@ export default function Heading({
       {live && (
         <FiberManualRecordIcon fontSize="small" className={classes.live} />
       )}
-      <Typography variant="h5" className={classes.heading}>
+      <Typography variant="h4" className={classes.heading}>
         {children}
       </Typography>
       <div className={classes.grow}></div>

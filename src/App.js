@@ -13,7 +13,9 @@ import Footer from "./components/Footer";
 import Home from "./containers/Home";
 import Drops from "./containers/Drops";
 import Influencers from "./containers/Influencers";
+import Influencer from "./containers/Influencers/Influencer";
 import Artists from "./containers/Artists";
+import Artist from "./containers/Artists/Artist";
 import Marketplace from "./containers/Marketplace";
 import ProfileSection from "./components/ProfileSection";
 
@@ -28,15 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DUMMY_CARD_DATA = {
-  coverImg: process.env.PUBLIC_URL + "/assets/seahawk.png",
-  profileImg: process.env.PUBLIC_URL + "/assets/influencer.png",
-  name: "Russell Wilson",
-  handle: "russellwilson",
-  about: "NFL starting QB for the Seattle Seahawks. 2013 Superbowl Champion.",
-  follower_count: 1300000,
-};
-
 function App() {
   const classes = useStyles();
   return (
@@ -44,16 +37,21 @@ function App() {
       <div className={classes.app}>
         <Header />
         <Container maxWidth="lg" fixed className={classes.main}>
-          <ProfileSection {...DUMMY_CARD_DATA} />
-          {/* <Switch>
+          <Switch>
             <Route path="/marketplace">
               <Marketplace />
             </Route>
             <Route path="/drops">
               <Drops />
             </Route>
+            <Route path="/influencers/:id">
+              <Influencer />
+            </Route>
             <Route path="/influencers">
               <Influencers />
+            </Route>
+            <Route path="/artists/:id">
+              <Artist />
             </Route>
             <Route path="/artists">
               <Artists />
@@ -61,7 +59,7 @@ function App() {
             <Route path="/">
               <Home />
             </Route>
-          </Switch> */}
+          </Switch>
         </Container>
         <Footer />
       </div>
