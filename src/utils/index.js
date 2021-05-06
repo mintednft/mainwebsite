@@ -23,3 +23,20 @@ export const truncateText = (text, maxLength = 100) => {
   }
   return text;
 };
+
+/**
+ * Gives social platform url based on platform and handle
+ * @param {*} platform
+ * @param {*} handle
+ * @returns
+ */
+export const getSocialURL = (platform, handle) => {
+  switch (platform) {
+    case "instagram":
+      return `https://www.instagram.com/${handle}`;
+    case "twitter":
+      return `https://twitter.com/${handle}`;
+    default:
+      return `https://www.${platform}.com/${handle}`;
+  }
+};

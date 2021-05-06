@@ -36,6 +36,7 @@ const theme = createMuiTheme({
       300: "#d9d9d9",
       500: "#8c8c8c",
       700: "#595959",
+      900: "#262626",
     },
   },
   typography: {
