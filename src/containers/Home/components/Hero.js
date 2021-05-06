@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     textAlign: "center",
     maxWidth: 920,
-    margin: "auto",
+    margin: "40px auto",
   },
   h2: {
     fontWeight: 700,

@@ -17,16 +17,18 @@ import Influencer from "./containers/Influencers/Influencer";
 import Artists from "./containers/Artists";
 import Artist from "./containers/Artists/Artist";
 import Marketplace from "./containers/Marketplace";
-import ProfileSection from "./components/ProfileSection";
+import SignIn from "./containers/Public/Auth/SignIn";
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    marginTop: theme.spacing(5),
+    //marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
     maxWidth: theme.breakpoints.values.lg + 300,
   },
   app: {
-    minHeight: "100%",
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
   },
 }));
 
@@ -38,6 +40,9 @@ function App() {
         <Header />
         <Container maxWidth="lg" fixed className={classes.main}>
           <Switch>
+            <Route path="/signin">
+              <SignIn />
+            </Route>
             <Route path="/marketplace">
               <Marketplace />
             </Route>

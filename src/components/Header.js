@@ -25,6 +25,7 @@ import cx from "clsx";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    maxHeight: theme.spacing(12),
   },
   menuButton: {
     marginRight: theme.spacing(2),
