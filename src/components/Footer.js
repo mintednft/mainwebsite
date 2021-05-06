@@ -25,7 +25,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     display: "block",
   },
-  appBar: {},
+  appBar: {
+    marginTop: "auto",
+  },
   social: {
     "& > .MuiIconButton-root": {
       color: "#262626",
@@ -49,6 +51,7 @@ export default function Footer() {
       color="inherit"
       elevation={0}
       className={classes.appBar}
+      component="footer"
     >
       <Toolbar className={classes.toolbar}>
         <img
