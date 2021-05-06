@@ -13,7 +13,6 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import cx from "clsx";
 import Twitter from "@material-ui/icons/Twitter";
-import { Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -168,7 +167,7 @@ export default function SignIn() {
               />
             }
           >
-            Google
+            Sign in with Google
           </Button>
           <Button
             type="submit"
@@ -177,7 +176,7 @@ export default function SignIn() {
             className={cx(classes.button, classes.twitter)}
             startIcon={<Twitter />}
           >
-            Twitter
+            Sign in with Twitter
           </Button>
           <Grid container>
             <Grid item xs>
@@ -186,7 +185,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2" className={classes.link}>
+              <Link to="/signup" variant="body2" className={classes.link}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

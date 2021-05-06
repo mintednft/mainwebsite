@@ -34,6 +34,7 @@ const theme = createMuiTheme({
     },
     grey: {
       300: "#d9d9d9",
+      400: "#BFBFBF",
       500: "#8c8c8c",
       700: "#595959",
       900: "#262626",

@@ -17,7 +17,9 @@ import Influencer from "./containers/Influencers/Influencer";
 import Artists from "./containers/Artists";
 import Artist from "./containers/Artists/Artist";
 import Marketplace from "./containers/Marketplace";
+
 import SignIn from "./containers/Public/Auth/SignIn";
+import SignUp from "./containers/Public/Auth/SignUp";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -42,6 +44,9 @@ function App() {
           <Switch>
             <Route path="/signin">
               <SignIn />
+            </Route>
+            <Route path="/signup">
+              <SignUp />
             </Route>
             <Route path="/marketplace">
               <Marketplace />
