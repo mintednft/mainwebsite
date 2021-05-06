@@ -19,7 +19,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import ListItemText from "@material-ui/core/ListItemText";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import cx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -318,12 +318,17 @@ export default function Header() {
     <div className={classes.grow}>
       <AppBar position="static" color="inherit" elevation={0}>
         <Toolbar className={classes.toolbar}>
-          <img src={process.env.PUBLIC_URL + "/assets/logo.png"} />
+          <Link to="/">
+            <img src={process.env.PUBLIC_URL + "/assets/logo.png"} />
+          </Link>
           <div className={classes.grow} />
           <Navbar />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <Button
+            <Link to="/signin">
+              <Typography variant="h5">Login/Signup</Typography>
+            </Link>
+            {/* <Button
               className={classes.button}
               aria-label="account of current user"
               aria-controls={menuId}
@@ -337,7 +342,7 @@ export default function Header() {
               }
             >
               Sal Qadir
-            </Button>
+            </Button> */}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
