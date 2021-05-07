@@ -10,6 +10,7 @@ import Divider from "@material-ui/core/Divider";
 import { formatCash, truncateText, getSocialURL } from "../utils/index";
 import Instagram from "@material-ui/icons/Instagram";
 import Twitter from "@material-ui/icons/Twitter";
+import ActionButtons from "./ActionButtons";
 
 const SOCIAL_ICONS = {
   instagram: Instagram,
@@ -17,7 +18,10 @@ const SOCIAL_ICONS = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  wrapper: {
+    position: "relative",
+  },
+  card: {
     width: "100%",
     borderRadius: theme.spacing(0),
   },
@@ -117,13 +121,14 @@ export default function ProfileSection({
   const classes = useStyles();
 
   return (
-    <div>
-      <Card className={classes.root}>
+    <div className={classes.wrapper}>
+      <Card className={classes.card}>
         <CardMedia
           className={classes.media}
           image={coverImg}
           title="Paella dish"
         />
+        <ActionButtons />
       </Card>
       <Grid container spacing={2}>
         <Grid item md={3}>

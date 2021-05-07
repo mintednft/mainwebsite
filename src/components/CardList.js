@@ -27,6 +27,7 @@ export default function CardList({
 }) {
   const classes = useStyles();
 
+  /* xs={12} sm={6} md={4} lg={3} xl={2} */
   return (
     <div className={classes.wrapper}>
       <Grid container spacing={1} justify="flex-start">
