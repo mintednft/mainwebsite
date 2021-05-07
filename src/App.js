@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./containers/Home";
 import Drops from "./containers/Drops";
+import Drop from "./containers/Drops/Drop";
 import Influencers from "./containers/Influencers";
 import Influencer from "./containers/Influencers/Influencer";
 import Artists from "./containers/Artists";
@@ -58,6 +59,9 @@ function App() {
             </Route>
             <Route path="/marketplace">
               <Marketplace />
+            </Route>
+            <Route path="/drops/:id">
+              <Drop />
             </Route>
             <Route path="/drops">
               <Drops />

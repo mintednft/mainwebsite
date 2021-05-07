@@ -5,6 +5,7 @@ import Countdown from "../../../components/Countdown";
 import cx from "clsx";
 
 import Heading from "../../../components/Heading";
+import BidPrice from "../../../components/BidPrice";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {},
@@ -34,11 +35,6 @@ const useStyles = makeStyles((theme) => ({
   h5: {
     fontWeight: 400,
     fontSize: 24,
-  },
-  h4: {
-    fontWeight: 700,
-    fontSize: 36,
-    margin: theme.spacing(1, 0),
   },
   button: {
     borderRadius: theme.spacing(2),
@@ -85,15 +81,7 @@ export default function FeaturedDrop() {
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={6} justify="flex-start">
-                <Typography variant="h5" className={classes.h5}>
-                  Current Bid
-                </Typography>
-                <Typography variant="h4" className={classes.h4}>
-                  $7,998
-                </Typography>
-                <Typography variant="h5" className={classes.h5}>
-                  2.4 ETH
-                </Typography>
+                <BidPrice />
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="h5" className={classes.h5}>
