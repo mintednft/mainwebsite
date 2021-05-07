@@ -39,6 +39,7 @@ const theme = createMuiTheme({
       700: "#595959",
       900: "#262626",
     },
+    link: "#3250FE",
   },
   typography: {
     fontSize: 14,
