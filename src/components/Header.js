@@ -319,7 +319,10 @@ export default function Header() {
       <AppBar position="static" color="inherit" elevation={0}>
         <Toolbar className={classes.toolbar}>
           <Link to="/">
-            <img src={process.env.PUBLIC_URL + "/assets/logo.png"} />
+            <img
+              src={process.env.PUBLIC_URL + "/assets/logo.png"}
+              alt="Minted Main Logo"
+            />
           </Link>
           <div className={classes.grow} />
           <Navbar />

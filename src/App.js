@@ -20,6 +20,8 @@ import Marketplace from "./containers/Marketplace";
 
 import SignIn from "./containers/Public/Auth/SignIn";
 import SignUp from "./containers/Public/Auth/SignUp";
+import Question from "./containers/Public/Auth/Question";
+import Verify from "./containers/Public/Auth/Verify";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -47,6 +49,12 @@ function App() {
             </Route>
             <Route path="/signup">
               <SignUp />
+            </Route>
+            <Route path="/question">
+              <Question />
+            </Route>
+            <Route path="/verify/:userType">
+              <Verify />
             </Route>
             <Route path="/marketplace">
               <Marketplace />
