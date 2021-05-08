@@ -9,16 +9,18 @@ import cx from "clsx";
 const useStyles = makeStyles((theme) => ({
   actions: {
     position: "absolute",
-    right: theme.spacing(12),
+    right: theme.spacing(1),
     marginTop: -24,
   },
   actionButton: {
-    background: theme.palette.background.default,
+    background: theme.palette.background.paper,
     margin: theme.spacing(0, 0, 0, 2),
     boxShadow:
       "2.48384px 2.48384px 2.48384px 6.20961px rgba(0, 0, 0, 0.015), -2.48384px 2.48384px 0px 6.20961px rgba(0, 0, 0, 0.015)",
     "&:hover": {
-      background: theme.palette.background.default,
+      background: theme.palette.background.paper,
+      boxShadow:
+        "2.48384px 2.48384px 2.48384px 8.20961px rgba(0, 0, 0, 0.015), -2.48384px 2.48384px 0px 8.20961px rgba(0, 0, 0, 0.015)",
     },
   },
   shareButton: {

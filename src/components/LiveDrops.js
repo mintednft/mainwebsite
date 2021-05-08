@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const getLink = (o) => {
+  return `/drops/1`;
+};
+
 export default function LiveDrops() {
   const classes = useStyles();
   return (
@@ -19,7 +23,7 @@ export default function LiveDrops() {
       <Heading live action={{ href: "/drops", label: "View all drops" }}>
         Live drops
       </Heading>
-      <CardList card={DropCard} data={[...new Array(23)]} />
+      <CardList card={DropCard} data={[...new Array(23)]} getLink={getLink} />
     </div>
   );
 }

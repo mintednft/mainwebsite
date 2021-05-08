@@ -9,9 +9,6 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
-import { formatCash, truncateText, getSocialURL } from "../utils/index";
-import Instagram from "@material-ui/icons/Instagram";
-import Twitter from "@material-ui/icons/Twitter";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import ActionButtons from "./ActionButtons";
 import BidPrice from "./BidPrice";
@@ -22,11 +19,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-
-const SOCIAL_ICONS = {
-  instagram: Instagram,
-  twitter: Twitter,
-};
+import Heading from "./Heading";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -35,16 +28,17 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: "100%",
     borderRadius: theme.spacing(0),
+    background: theme.palette.grey[100],
   },
   media: {
-    height: 0,
-    paddingTop: "25%",
+    minHeight: 420,
+    //paddingTop: "25%",
     backgroundSize: "auto",
   },
   avatar: {
-    width: 200,
-    height: 200,
-    margin: `-100px auto 16px`,
+    width: 104,
+    height: 104,
+    marginRight: theme.spacing(4),
     "& > img": {
       margin: 0,
     },
@@ -58,26 +52,29 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[700],
   },
   caption: {
-    fontSize: 14,
     color: theme.palette.grey[500],
-  },
-  cardContent: {
-    height: 80,
-    paddingTop: theme.spacing(0),
   },
   description: {
     fontWeight: 700,
     fontSize: 18,
     color: theme.palette.grey[700],
-    maxWidth: 480,
+    maxWidth: 640,
   },
   handleButton: {
+    background: theme.palette.background.paper,
     boxShadow:
       "2.48384px 2.48384px 2.48384px 6.20961px rgba(0, 0, 0, 0.015), -2.48384px 2.48384px 0px 6.20961px rgba(0, 0, 0, 0.015)",
+    "&:hover": {
+      background: theme.palette.background.paper,
+      boxShadow:
+        "2.48384px 2.48384px 2.48384px 8.20961px rgba(0, 0, 0, 0.015), -2.48384px 2.48384px 0px 8.20961px rgba(0, 0, 0, 0.015)",
+    },
     borderRadius: theme.spacing(4),
     padding: theme.spacing(1, 4),
     fontSize: 18,
-    margin: theme.spacing(2, 0),
+    marginTop: -24,
+    position: "absolute",
+    left: theme.spacing(1),
   },
   details: {
     margin: theme.spacing(2, 0),
@@ -118,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     margin: theme.spacing(0, 0, 3, 0),
     padding: theme.spacing(0, 2),
+    minHeight: 56,
   },
   listRoot: {
     maxWidth: 480,
@@ -150,8 +148,8 @@ function History({ data = HISTORY_DATA }) {
   const classes = useStyles();
   return (
     <List className={classes.listRoot}>
-      {data.map(({ handle, time, action, image, price, crypto }) => (
-        <ListItem className={classes.listItem}>
+      {data.map(({ handle, time, action, image, price, crypto }, i) => (
+        <ListItem key={i.toString()} className={classes.listItem}>
           <ListItemAvatar>
             <Avatar src={image} />
           </ListItemAvatar>
@@ -189,16 +187,102 @@ function History({ data = HISTORY_DATA }) {
   );
 }
 
+const OTHER_VIEWS_DATA = [
+  {
+    platform: "Etherscan",
+    url: "#TODO",
+  },
+  {
+    platform: "Etherscan",
+    url: "#TODO",
+  },
+];
+
+function OtherViews({ data = OTHER_VIEWS_DATA }) {
+  const classes = useStyles();
+  return (
+    <List className={classes.listRoot}>
+      {data.map(({ platform, url }) => (
+        <ListItem key={platform} className={classes.listItem}>
+          <ListItemText
+            primary={<Typography variant="h5">View on {platform}</Typography>}
+          />
+          <ListItemSecondaryAction className={classes.listAction}>
+            <IconButton
+              edge="end"
+              aria-label="external-link"
+              component="a"
+              href={url}
+            >
+              <ExitToApp />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
+    </List>
+  );
+}
+
+const INFLUENCER_ARTIST_DATA = {
+  influencer: {
+    name: "Russell Wilson",
+    handle: "russellwilson",
+    image: process.env.PUBLIC_URL + "/assets/influencer.png",
+  },
+  artist: {
+    name: "Andy Warhol",
+    handle: "andywarhol",
+    image: process.env.PUBLIC_URL + "/assets/artistdp.png",
+  },
+};
+
+function InfluencerAndArtist({ influencer = {}, artist = {} }) {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <Heading>INFLUENCER x ARTIST</Heading>
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar src={influencer.image} className={classes.avatar} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={<Typography variant="h3">{influencer.name}</Typography>}
+            secondary={
+              <Typography variant="h4" className={classes.caption}>
+                @{influencer.handle}
+              </Typography>
+            }
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar src={artist.image} className={classes.avatar} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={<Typography variant="h3">{artist.name}</Typography>}
+            secondary={
+              <Typography variant="h4" className={classes.caption}>
+                @{artist.handle}
+              </Typography>
+            }
+          />
+        </ListItem>
+      </List>
+    </React.Fragment>
+  );
+}
+
 export default function DropSection({}) {
   const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>
-      <Card className={classes.card} elevation={1}>
+      <Card className={classes.card} elevation={0}>
         <CardMedia
           className={classes.media}
           image={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
-          title="Paella dish"
+          title={"Drop Name"}
         />
         <Button size="large" className={classes.handleButton}>
           @russellwilson
@@ -230,56 +314,57 @@ export default function DropSection({}) {
               </Typography>
               <Typography variant="h3">1</Typography>
             </div>
-            <Divider />
             <div className={classes.section}>
-              <Typography className={classes.label} variant="h4">
-                Links
-              </Typography>
+              <OtherViews />
             </div>
           </Grid>
-          <Grid item xs={12} md={5} justify="center">
-            <Box marginLeft="auto">
-              <Paper elevation={2} className={classes.paper}>
-                <Box p={3}>
-                  <Grid container={2}>
-                    <Grid item xs className={classes.borderRight}>
-                      <BidPrice />
-                    </Grid>
-                    <Grid item xs>
-                      <Box pl={3} pr={2}>
-                        <Typography variant="caption" component="p">
-                          Once the starting bid has been placed, a 72-hour
-                          auction for this artwork will begin.
-                        </Typography>
-                        <Box mt={3}>
-                          <Typography
-                            variant="caption"
-                            component="p"
-                            className={classes.caption}
-                          >
-                            <Link>Learn more</Link>
+          <Grid item xs={12} md={5}>
+            <Box display="flex">
+              <Box flexGrow={1}></Box>
+              <Box>
+                <Paper elevation={2} className={classes.paper}>
+                  <Box p={3}>
+                    <Grid container={2}>
+                      <Grid item xs className={classes.borderRight}>
+                        <BidPrice />
+                      </Grid>
+                      <Grid item xs>
+                        <Box pl={3} pr={2}>
+                          <Typography variant="caption" component="p">
+                            Once the starting bid has been placed, a 72-hour
+                            auction for this artwork will begin.
                           </Typography>
+                          <Box mt={3}>
+                            <Typography
+                              variant="caption"
+                              component="p"
+                              className={classes.caption}
+                            >
+                              <Link>Learn more</Link>
+                            </Typography>
+                          </Box>
                         </Box>
-                      </Box>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </Box>
+                  <Divider />
+                  <Box p={2}>
+                    <Button fullWidth className={classes.placeBidButton}>
+                      Place a bid
+                    </Button>
+                  </Box>
+                </Paper>
+                <Box mt={3}>
+                  <Typography className={classes.label} variant="h3">
+                    History
+                  </Typography>
+                  <History />
                 </Box>
-                <Divider />
-                <Box p={2}>
-                  <Button fullWidth className={classes.placeBidButton}>
-                    Place a bid
-                  </Button>
-                </Box>
-              </Paper>
-              <Box mt={3}>
-                <Typography className={classes.label} variant="h3">
-                  History
-                </Typography>
-                <History />
               </Box>
             </Box>
           </Grid>
         </Grid>
+        <InfluencerAndArtist {...INFLUENCER_ARTIST_DATA} />
       </Box>
     </div>
   );
