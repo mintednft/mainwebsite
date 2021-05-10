@@ -38,12 +38,12 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    borderRadius: theme.spacing(2),
+    backgroundColor: fade(theme.palette.secondary.main, 1),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.secondary.main, 0.9),
     },
-    margin: theme.spacing(1, 0),
+    margin: theme.spacing(2, 0),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       width: "auto",
@@ -57,20 +57,25 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    color: theme.palette.background.paper,
   },
-  inputRoot: {},
+  inputRoot: {
+    minHeight: theme.spacing(4),
+  },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(0.5)}px)`,
+    padding: theme.spacing(0.25),
+    //paddingLeft: `calc(1em + ${theme.spacing(0.5)}px)`,
     transition: theme.transitions.create("width"),
     fontSize: 14,
     width: "100%",
+    color: theme.palette.background.paper,
     [theme.breakpoints.up("md")]: {},
     "&::-webkit-input-placeholder": {
-      border: `1px solid ${theme.palette.text.secondary}`,
+      //border: `1px solid ${theme.palette.background.paper}`,
       borderRadius: theme.spacing(1),
       padding: theme.spacing(0.25),
       textAlign: "center",
+      color: theme.palette.background.paper,
     },
   },
   sectionDesktop: {
@@ -98,25 +103,34 @@ const useStyles = makeStyles((theme) => ({
   },
 
   paper: {
-    padding: theme.spacing(0.5, 4),
+    padding: theme.spacing(0.25, 4),
     textAlign: "center",
     color: theme.palette.text.secondary,
     boxShadow:
       "2.71693px 2.71693px 2.71693px 6.79234px rgba(0, 0, 0, 0.015), -2.71693px 2.71693px 0px 6.79234px rgba(0, 0, 0, 0.015)",
     borderRadius: theme.spacing(1.5),
+    height: 68,
   },
 
   link: {
-    fontSize: 14,
-    margin: theme.spacing(1),
+    fontSize: 18,
+    margin: theme.spacing(1.5, 1),
     "&.active": {
-      background: theme.palette.primary.main,
+      background: theme.palette.secondary.main,
       color: theme.palette.background.default,
       borderRadius: theme.spacing(1.25),
     },
   },
   button: {
     fontSize: 18,
+  },
+  beta: {
+    padding: theme.spacing(0.125),
+    borderRadius: theme.spacing(0.5),
+    fontSize: 12,
+    pointerEvents: "none",
+    position: "absolute",
+    left: 244,
   },
 }));
 
@@ -152,7 +166,7 @@ function Navbar() {
               <SearchIcon size="small" className={classes.avatarVerySmall} />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder="search"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -324,6 +338,14 @@ export default function Header() {
               alt="Minted Main Logo"
             />
           </Link>
+          <Button
+            size="small"
+            color="secondary"
+            variant="contained"
+            className={classes.beta}
+          >
+            BETA
+          </Button>
           <div className={classes.grow} />
           <Navbar />
           <div className={classes.grow} />
