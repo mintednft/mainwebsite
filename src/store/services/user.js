@@ -1,5 +1,5 @@
 import { API } from "./index";
-import { toQueryParams } from "../../shared/utils";
+import { toQueryParams } from "../../utils";
 
 const USERS_URL = "v1/api/users/";
 

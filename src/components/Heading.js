@@ -9,15 +9,26 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   wrapper: {
-    borderBottom: `2px solid ${theme.palette.text.primary}`,
     margin: theme.spacing(6, 0),
     display: "flex",
     paddingBottom: theme.spacing(1),
+    position: "relative",
+    "&::after": {
+      position: "absolute",
+      height: 2,
+      content: "''",
+      width: "100%",
+      bottom: -2,
+      left: 0,
+      borderBottom: `1px solid ${theme.palette.secondary.main}`,
+      borderTop: `1px solid ${theme.palette.text.primary}`,
+    },
   },
   live: {
     margin: "auto",
     marginRight: theme.spacing(1.5),
     animation: "blinker 1s cubic-bezier(.5, 0, 1, 1) infinite alternate",
+    color: theme.palette.secondary.main,
   },
   heading: {
     fontWeight: 500,

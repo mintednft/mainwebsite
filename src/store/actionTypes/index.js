@@ -33,3 +33,6 @@ export const EDIT_USER_FAILED = "EDIT_USER_FAILED";
 export const UPDATE_USERS_DATA = "UPDATE_USERS_DATA";
 
 export const RESET_USERS = "RESET_USERS";
+
+export const STATUS_FAILED = "STATUS_FAILED";
+export const STATUS_SUCCESS = "STATUS_SUCCESS";
