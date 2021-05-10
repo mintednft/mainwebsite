@@ -84,7 +84,7 @@ export default function FeaturedDrop() {
               Night Universe Sky [Vale of Memory]
             </Typography>
             <Grid container spacing={2}>
-              <Grid item xs={6} justify="flex-start">
+              <Grid item xs={6}>
                 <BidPrice />
               </Grid>
               <Grid item xs={6}>

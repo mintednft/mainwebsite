@@ -1,6 +1,9 @@
 import { red } from "@material-ui/core/colors";
 import { createMuiTheme } from "@material-ui/core/styles";
 
+const PRIMARY = "#18182B";
+const SECONDARY = "#5B33F4";
+
 // A custom theme for this app
 const theme = createMuiTheme({
   overrides: {
@@ -15,13 +18,19 @@ const theme = createMuiTheme({
         },
       },
     },
+    MuiDivider: {
+      light: {
+        backgroundColor: SECONDARY,
+        height: 2,
+      },
+    },
   },
   palette: {
     primary: {
-      main: "#18182B",
+      main: PRIMARY,
     },
     secondary: {
-      main: "#5B33F4",
+      main: SECONDARY,
     },
     error: {
       main: red.A400,

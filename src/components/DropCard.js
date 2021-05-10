@@ -7,19 +7,27 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Countdown from "./Countdown";
+import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 282,
+    width: 300,
     borderRadius: theme.spacing(1.25),
+    "&:hover": {
+      marginTop: -2,
+    },
+    "&:hover > $header, &:hover > $caption": {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.background.paper,
+    },
   },
   media: {
     height: 0,
     paddingTop: "100%", // 16:9
   },
+  header: {},
   caption: {
     fontSize: 14,
-    color: theme.palette.primary.main,
   },
   footer: {
     padding: theme.spacing(1, 2),
@@ -54,7 +62,9 @@ export default function DropCard() {
             @russellwilson
           </Typography>
         }
+        className={classes.header}
       />
+      <Divider light />
       <CardActions disableSpacing className={classes.footer}>
         <Grid container>
           <Grid xs>
