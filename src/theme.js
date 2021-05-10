@@ -36,10 +36,12 @@ const theme = createMuiTheme({
       main: red.A400,
     },
     background: {
-      default: "#fff",
+      default: "#FEFEFE",
+      //paper: "#F0F0F0",
     },
     text: {
       primary: "#18182B",
+      secondary: "#595959",
     },
     grey: {
       300: "#d9d9d9",
@@ -55,6 +57,10 @@ const theme = createMuiTheme({
     htmlFontSize: 16,
     button: {
       textTransform: "none",
+    },
+    h1: {
+      fontSize: 52,
+      fontWeight: 700,
     },
     h3: {
       fontSize: 36,
