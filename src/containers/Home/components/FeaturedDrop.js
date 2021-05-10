@@ -46,15 +46,14 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       boxShadow:
         "2.72783px 2.72783px 2.72783px 10.81958px rgba(0, 0, 0, 0.015), -2.72783px 2.72783px 0px 10.81958px rgba(0, 0, 0, 0.015)",
-      background: theme.palette.background.default,
       transform: "translateY(-2px)",
     },
   },
-  primaryBtn: {
-    background: theme.palette.primary.main,
-    color: theme.palette.background.default,
+  btnDetails: {
+    background: theme.palette.background.default,
+    //color: theme.palette.background.default,
     "&:hover": {
-      background: theme.palette.primary.main,
+      background: theme.palette.background.default,
     },
   },
 }));
@@ -70,8 +69,13 @@ export default function FeaturedDrop() {
             <img
               src={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
               className={classes.img}
+              alt="Featured Drop"
             />
-            <Button size="large" className={classes.handleButton}>
+            <Button
+              size="large"
+              className={classes.handleButton}
+              color="secondary"
+            >
               @russellwilson
             </Button>
           </Grid>
@@ -94,13 +98,19 @@ export default function FeaturedDrop() {
               <Grid item xs={6}>
                 <Button
                   size="large"
-                  className={cx(classes.button, classes.primaryBtn)}
+                  className={cx(classes.button)}
+                  color="secondary"
+                  variant="contained"
                 >
                   Place a bid
                 </Button>
               </Grid>
               <Grid item xs={6}>
-                <Button size="large" className={cx(classes.button)}>
+                <Button
+                  size="large"
+                  className={cx(classes.button, classes.btnDetails)}
+                  variant="contained"
+                >
                   View details
                 </Button>
               </Grid>
