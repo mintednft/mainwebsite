@@ -11,11 +11,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
   },
   item: {
-    margin: "8px auto",
+    margin: "4px auto",
     borderRadius: theme.spacing(1.25),
-    "&:hover": {
-      boxShadow: theme.shadows[2],
-    },
     width: "min-content",
   },
 }));

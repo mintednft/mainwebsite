@@ -14,7 +14,14 @@ import { formatCash, truncateText } from "../utils/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 282,
+    width: 300,
+    "&:hover": {
+      marginTop: -2,
+    },
+    "&:hover > $header, &:hover > $caption": {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.background.paper,
+    },
   },
   media: {
     height: 0,

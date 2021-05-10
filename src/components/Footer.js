@@ -17,20 +17,21 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     height: theme.spacing(12),
-    background: theme.palette.grey[100],
+    background: theme.palette.secondary.main,
     textAlign: "center",
-    color: theme.palette.text.secondary,
+    color: theme.palette.background.paper,
   },
   link: {
     fontSize: 14,
     display: "block",
+    color: theme.palette.background.paper,
   },
   appBar: {
     marginTop: "auto",
   },
   social: {
     "& > .MuiIconButton-root": {
-      color: "#262626",
+      color: theme.palette.background.paper,
       margin: theme.spacing(0, 1),
     },
   },
@@ -56,7 +57,7 @@ export default function Footer() {
       <Toolbar className={classes.toolbar}>
         <img
           alt="footer-logo"
-          src={process.env.PUBLIC_URL + "/assets/icon_logo.png"}
+          src={process.env.PUBLIC_URL + "/assets/icon_logo_white.png"}
         />
         <div className={classes.grow} />
         <Container maxWidth="md">
