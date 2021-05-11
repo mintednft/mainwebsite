@@ -331,6 +331,8 @@ export default function Header() {
     </Menu>
   );
 
+  const isLoggedIn = window.localStorage.getItem("_ta");
+
   return (
     <div className={classes.grow}>
       <AppBar position="static" color="inherit" elevation={0}>
@@ -353,24 +355,30 @@ export default function Header() {
           <Navbar />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <Link to="/signin">
-              <Typography variant="h5">Login/Signup</Typography>
-            </Link>
-            {/* <Button
-              className={classes.button}
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              size="large"
-              startIcon={
-                <Avatar alt="Sal Qadir" className={classes.avatarSmall}>
-                  S
-                </Avatar>
-              }
-            >
-              Sal Qadir
-            </Button> */}
+            {!isLoggedIn && (
+              <Link to="/signin">
+                <Typography variant="h5">Login/Signup</Typography>
+              </Link>
+            )}
+            {isLoggedIn && (
+              <Button
+                className={classes.button}
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                size="large"
+                startIcon={
+                  <Avatar
+                    alt="Sal Qadir"
+                    src={process.env.PUBLIC_URL + "/assets/sal.png"}
+                    className={classes.avatarSmall}
+                  ></Avatar>
+                }
+              >
+                Sal Qadir
+              </Button>
+            )}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton

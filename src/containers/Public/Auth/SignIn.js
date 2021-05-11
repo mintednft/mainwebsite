@@ -15,6 +15,8 @@ import cx from "clsx";
 import Twitter from "@material-ui/icons/Twitter";
 import Fade from "react-reveal/Fade";
 
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     display: "flex",
@@ -85,6 +87,8 @@ export default function SignIn() {
     event.preventDefault();
   };
 
+  const history = useHistory();
+
   return (
     <Container maxWidth="xs">
       <div className={classes.paper}>
@@ -100,7 +104,15 @@ export default function SignIn() {
           <Typography variant="h6" className={classes.text}>
             Please login to continue
           </Typography>
-          <form className={classes.form} noValidate>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={(e) => {
+              e.preventDefault();
+              window.localStorage.setItem("_ta", 1);
+              history.push("/marketplace");
+            }}
+          >
             <TextField
               variant="outlined"
               margin="normal"
@@ -182,7 +194,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2" className={classes.link}>
+                <Link to="#" variant="body2" className={classes.link}>
                   Forgot password?
                 </Link>
               </Grid>

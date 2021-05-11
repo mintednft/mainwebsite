@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   h5: {
     fontWeight: 400,
-    fontSize: 24,
+    fontSize: 20,
   },
   span: {
     fontWeight: 500,
@@ -57,13 +57,13 @@ export default function Countdown({
       if (!withText) {
         return (
           <div className={classes.miniWrapper}>
-            <Typography variant="span" className={classes.span}>
+            <Typography component="span" className={classes.span}>
               {hours}h
             </Typography>
-            <Typography variant="span" className={classes.span}>
+            <Typography component="span" className={classes.span}>
               {minutes}m
             </Typography>
-            <Typography variant="span" className={classes.span}>
+            <Typography component="span" className={classes.span}>
               {seconds}s
             </Typography>
           </div>
