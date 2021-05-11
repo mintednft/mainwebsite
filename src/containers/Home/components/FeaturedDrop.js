@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid, Button, Container } from "@material-ui/core";
 import Countdown from "../../../components/Countdown";
 import cx from "clsx";
+import Fade from "react-reveal/Fade";
 
 import Heading from "../../../components/Heading";
 import BidPrice from "../../../components/BidPrice";
@@ -67,55 +68,62 @@ export default function FeaturedDrop() {
       <Container maxWidth="md" className={classes.container}>
         <Grid container spacing={2}>
           <Grid item md={6}>
-            <img
-              src={process.env.PUBLIC_URL + "/assets/palm_spring.png"}
-              className={classes.img}
-              alt="Featured Drop"
-            />
-            <Button
-              size="large"
-              className={classes.handleButton}
-              color="secondary"
-            >
-              @russellwilson
-            </Button>
+            <Fade left>
+              <img
+                src={process.env.PUBLIC_URL + "/assets/palm_spring.png"}
+                className={classes.img}
+                alt="Featured Drop"
+              />
+            </Fade>
+            <Fade left>
+              <Button
+                size="large"
+                className={classes.handleButton}
+                color="secondary"
+              >
+                @russellwilson
+              </Button>
+            </Fade>
           </Grid>
           <Grid item md={6}>
-            <Typography variant="h2" className={classes.h2}>
-              Night Universe Sky [Vale of Memory]
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <BidPrice />
+            <Fade right>
+              <Typography variant="h2" className={classes.h2}>
+                Night Universe Sky [Vale of Memory]
+              </Typography>
+
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <BidPrice />
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography variant="h5" className={classes.h5}>
+                    Auction ending in
+                  </Typography>
+                  <Countdown withText />
+                </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <Typography variant="h5" className={classes.h5}>
-                  Auction ending in
-                </Typography>
-                <Countdown withText />
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Button
+                    size="large"
+                    className={cx(classes.button)}
+                    color="secondary"
+                    variant="contained"
+                  >
+                    Place a bid
+                  </Button>
+                </Grid>
+                <Grid item xs={6}>
+                  <Button
+                    size="large"
+                    className={cx(classes.button, classes.btnDetails)}
+                    variant="contained"
+                  >
+                    View details
+                  </Button>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <Button
-                  size="large"
-                  className={cx(classes.button)}
-                  color="secondary"
-                  variant="contained"
-                >
-                  Place a bid
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Button
-                  size="large"
-                  className={cx(classes.button, classes.btnDetails)}
-                  variant="contained"
-                >
-                  View details
-                </Button>
-              </Grid>
-            </Grid>
+            </Fade>
           </Grid>
         </Grid>
       </Container>

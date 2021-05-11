@@ -5,6 +5,7 @@ import MoreHoriz from "@material-ui/icons/MoreHoriz";
 import ShareIcon from "@material-ui/icons/Share";
 import IconButton from "@material-ui/core/IconButton";
 import cx from "clsx";
+import { Fade } from "react-reveal";
 
 const useStyles = makeStyles((theme) => ({
   actions: {
@@ -33,16 +34,18 @@ export default function ActionButtons() {
   const classes = useStyles();
 
   return (
-    <div className={classes.actions}>
-      <IconButton className={classes.actionButton}>
-        <MoreHoriz color="primary" />
-      </IconButton>
-      <Button
-        className={cx(classes.actionButton, classes.shareButton)}
-        startIcon={<ShareIcon />}
-      >
-        Share
-      </Button>
-    </div>
+    <Fade up>
+      <div className={classes.actions}>
+        <IconButton className={classes.actionButton}>
+          <MoreHoriz color="primary" />
+        </IconButton>
+        <Button
+          className={cx(classes.actionButton, classes.shareButton)}
+          startIcon={<ShareIcon />}
+        >
+          Share
+        </Button>
+      </div>
+    </Fade>
   );
 }

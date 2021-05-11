@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Carousel from "react-material-ui-carousel";
 import CardMedia from "@material-ui/core/CardMedia";
+import Fade from "react-reveal/Fade";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -34,11 +35,15 @@ const Banner = ({ image, name }) => {
   return (
     <CardMedia className={classes.media} image={image} title={name}>
       <div className={classes.bannerContent}>
-        <Typography variant="h1">{name}</Typography>
-        <Typography variant="h4">
-          Minted converts your social media into social impact. Proceeds go
-          towards the people and causes you care about.
-        </Typography>
+        <Fade down>
+          <Typography variant="h1">{name}</Typography>
+        </Fade>
+        <Fade up>
+          <Typography variant="h4">
+            Minted converts your social media into social impact. Proceeds go
+            towards the people and causes you care about.
+          </Typography>
+        </Fade>
       </div>
     </CardMedia>
   );
@@ -72,7 +77,7 @@ export default function Hero() {
       </Typography> */}
       <Carousel
         className={classes.carousel}
-        autoPlay={false}
+        autoPlay={true}
         animation="fade"
         cycleNavigation={true}
         // fullHeightHover={false}

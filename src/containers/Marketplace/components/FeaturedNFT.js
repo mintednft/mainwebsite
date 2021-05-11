@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid, Button, Container } from "@material-ui/core";
 import cx from "clsx";
+import Fade from "react-reveal/Fade";
 
 import Heading from "../../../components/Heading";
 
@@ -72,40 +73,44 @@ export default function FeaturedDrop() {
       <Container maxWidth="md" className={classes.container}>
         <Grid container spacing={2}>
           <Grid item md={6}>
-            <img
-              src={process.env.PUBLIC_URL + "/assets/palm_spring.png"}
-              className={classes.img}
-              alt="Featured NFT"
-            />
-            <Button size="large" className={classes.handleButton}>
-              @russellwilson
-            </Button>
+            <Fade left>
+              <img
+                src={process.env.PUBLIC_URL + "/assets/palm_spring.png"}
+                className={classes.img}
+                alt="Featured NFT"
+              />
+              <Button size="large" className={classes.handleButton}>
+                @russellwilson
+              </Button>
+            </Fade>
           </Grid>
           <Grid item md={6}>
-            <Typography variant="h2" className={classes.h2}>
-              Night Universe Sky [Vale of Memory]
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={6} justify="flex-start">
-                <Typography variant="h5" className={classes.h5}>
-                  Price
-                </Typography>
-                <Typography variant="h4" className={classes.h4}>
-                  $7,998
-                </Typography>
-                <Typography variant="h5" className={classes.h5}>
-                  2.4 ETH
-                </Typography>
+            <Fade right>
+              <Typography variant="h2" className={classes.h2}>
+                Night Universe Sky [Vale of Memory]
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={6} justify="flex-start">
+                  <Typography variant="h5" className={classes.h5}>
+                    Price
+                  </Typography>
+                  <Typography variant="h4" className={classes.h4}>
+                    $7,998
+                  </Typography>
+                  <Typography variant="h5" className={classes.h5}>
+                    2.4 ETH
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Button
+                    size="large"
+                    className={cx(classes.button, classes.primaryBtn)}
+                  >
+                    Buy
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <Button
-                  size="large"
-                  className={cx(classes.button, classes.primaryBtn)}
-                >
-                  Buy
-                </Button>
-              </Grid>
-            </Grid>
+            </Fade>
           </Grid>
         </Grid>
       </Container>

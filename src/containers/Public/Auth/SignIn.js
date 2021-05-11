@@ -13,6 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import cx from "clsx";
 import Twitter from "@material-ui/icons/Twitter";
+import Fade from "react-reveal/Fade";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -87,110 +88,112 @@ export default function SignIn() {
   return (
     <Container maxWidth="xs">
       <div className={classes.paper}>
-        <img
-          src={process.env.PUBLIC_URL + "/assets/small_logo.png"}
-          className={classes.avatar}
-          alt="Minted Logo"
-        />
-        <Typography variant="h4" className={classes.text}>
-          Welcome to Minted
-        </Typography>
-        <Typography variant="h6" className={classes.text}>
-          Please login to continue
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            size="small"
-            onChange={handleChange("email")}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <PersonOutline className={classes.icon} />
-                </InputAdornment>
-              ),
-            }}
+        <Fade up cascade>
+          <img
+            src={process.env.PUBLIC_URL + "/assets/small_logo.png"}
+            className={classes.avatar}
+            alt="Minted Logo"
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type={values.showPassword ? "text" : "password"}
-            id="password"
-            autoComplete="current-password"
-            size="small"
-            onChange={handleChange("password")}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                    className={classes.icon}
-                  >
-                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={cx(classes.button, classes.submit)}
-          >
-            Sign In
-          </Button>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={cx(classes.button, classes.google)}
-            startIcon={
-              <img
-                src={process.env.PUBLIC_URL + "/assets/google.png"}
-                alt="Google Logo"
-              />
-            }
-          >
-            Sign in with Google
-          </Button>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={cx(classes.button, classes.twitter)}
-            startIcon={<Twitter />}
-          >
-            Sign in with Twitter
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2" className={classes.link}>
-                Forgot password?
-              </Link>
+          <Typography variant="h4" className={classes.text}>
+            Welcome to Minted
+          </Typography>
+          <Typography variant="h6" className={classes.text}>
+            Please login to continue
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              size="small"
+              onChange={handleChange("email")}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <PersonOutline className={classes.icon} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type={values.showPassword ? "text" : "password"}
+              id="password"
+              autoComplete="current-password"
+              size="small"
+              onChange={handleChange("password")}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                      className={classes.icon}
+                    >
+                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={cx(classes.button, classes.submit)}
+            >
+              Sign In
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={cx(classes.button, classes.google)}
+              startIcon={
+                <img
+                  src={process.env.PUBLIC_URL + "/assets/google.png"}
+                  alt="Google Logo"
+                />
+              }
+            >
+              Sign in with Google
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={cx(classes.button, classes.twitter)}
+              startIcon={<Twitter />}
+            >
+              Sign in with Twitter
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2" className={classes.link}>
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to="/signup" variant="body2" className={classes.link}>
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link to="/signup" variant="body2" className={classes.link}>
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
+          </form>
+        </Fade>
       </div>
     </Container>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
+import Fade from "react-reveal/Fade";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -22,13 +23,17 @@ export default function Hero() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Typography variant="h2" className={classes.h2}>
-        Marketplace
-      </Typography>
-      <Typography variant="h5" className={classes.h5}>
-        The Marketplace is where NFTs are traded user-to-user. Go to ⚡️Drops⚡️
-        to buy NFTs directly from Influencers x Artists
-      </Typography>
+      <Fade down>
+        <Typography variant="h2" className={classes.h2}>
+          Marketplace
+        </Typography>
+      </Fade>
+      <Fade up>
+        <Typography variant="h5" className={classes.h5}>
+          The Marketplace is where NFTs are traded user-to-user. Go to
+          ⚡️Drops⚡️ to buy NFTs directly from Influencers x Artists
+        </Typography>
+      </Fade>
     </div>
   );
 }

@@ -12,6 +12,7 @@ import Instagram from "@material-ui/icons/Instagram";
 import Twitter from "@material-ui/icons/Twitter";
 import ActionButtons from "./ActionButtons";
 import Container from "@material-ui/core/Container";
+import { Fade, Zoom } from "react-reveal";
 
 const SOCIAL_ICONS = {
   instagram: Instagram,
@@ -96,14 +97,16 @@ function SocialLinks({ links = [] }) {
     const Icon = SOCIAL_ICONS[o.platform];
     return (
       <div key={o.platform}>
-        <Button
-          startIcon={<Icon className={classes.socialIcon} />}
-          component="a"
-          href={getSocialURL(o.platform, o.handle)}
-          className={classes.socialButton}
-        >
-          {o.platform}
-        </Button>
+        <Fade up>
+          <Button
+            startIcon={<Icon className={classes.socialIcon} />}
+            component="a"
+            href={getSocialURL(o.platform, o.handle)}
+            className={classes.socialButton}
+          >
+            {o.platform}
+          </Button>
+        </Fade>
       </div>
     );
   });
@@ -126,38 +129,48 @@ export default function ProfileSection({
 
   return (
     <div className={classes.wrapper}>
-      <Card className={classes.card}>
-        <CardMedia
-          className={classes.media}
-          image={coverImg}
-          title="Paella dish"
-        />
-      </Card>
+      <Fade big>
+        <Card className={classes.card}>
+          <CardMedia
+            className={classes.media}
+            image={coverImg}
+            title="Paella dish"
+          />
+        </Card>
+      </Fade>
       <Container>
         <Grid container spacing={2}>
           <Grid item md={3}>
-            <Avatar className={classes.avatar} src={profileImg} />
+            <Zoom>
+              <Avatar className={classes.avatar} src={profileImg} />
+            </Zoom>
             <div className={classes.details}>
-              <Typography variant="h3">{name}</Typography>
-              <Button size="large" className={classes.handleButton}>
-                @{handle}
-              </Button>
+              <Fade up cascade>
+                <Typography variant="h3">{name}</Typography>
+                <Button size="large" className={classes.handleButton}>
+                  @{handle}
+                </Button>
+              </Fade>
             </div>
             <Divider />
             <div className={classes.section}>
-              <Typography className={classes.label} variant="h4">
-                Bio
-              </Typography>
-              <Typography className={classes.about} title={about}>
-                {truncateText(about, 250)}
-              </Typography>
+              <Fade up cascade>
+                <Typography className={classes.label} variant="h4">
+                  Bio
+                </Typography>
+                <Typography className={classes.about} title={about}>
+                  {truncateText(about, 250)}
+                </Typography>
+              </Fade>
             </div>
             <Divider />
             <div className={classes.section}>
-              <Typography className={classes.label} variant="h4">
-                Links
-              </Typography>
-              <SocialLinks links={social_links} />
+              <Fade up cascade>
+                <Typography className={classes.label} variant="h4">
+                  Links
+                </Typography>
+                <SocialLinks links={social_links} />
+              </Fade>
             </div>
           </Grid>
           <Grid item md={9} className={classes.main}>

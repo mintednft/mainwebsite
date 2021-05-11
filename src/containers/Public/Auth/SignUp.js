@@ -18,6 +18,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import Checkbox from "@material-ui/core/Checkbox";
+import Fade from "react-reveal/Fade";
 
 import { useDispatch } from "react-redux";
 
@@ -153,242 +154,249 @@ export default function SignIn() {
   return (
     <Container maxWidth="xs">
       <div className={classes.paper}>
-        <img
-          src={process.env.PUBLIC_URL + "/assets/small_logo.png"}
-          className={classes.avatar}
-          alt="Minted Logo"
-        />
-        <Typography variant="h4" className={classes.text}>
-          Signup for Minted
-        </Typography>
-        {/* <Typography variant="h6" className={classes.text}>
+        <Fade up cascade>
+          <img
+            src={process.env.PUBLIC_URL + "/assets/small_logo.png"}
+            className={classes.avatar}
+            alt="Minted Logo"
+          />
+          <Typography variant="h4" className={classes.text}>
+            Signup for Minted
+          </Typography>
+          {/* <Typography variant="h6" className={classes.text}>
           Please login to continue
         </Typography> */}
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            size="small"
-            type="email"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <PersonOutline className={classes.icon} />
-                </InputAdornment>
-              ),
-            }}
-            FormHelperTextProps={{ error: true }}
-            helperText={(() => {
-              if (status === "invalidEmail") {
-                return "Invalid email";
-              }
-              return null;
-            })()}
-            onChange={(e) => {
-              if (status === "invalidEmail") {
-                setStatus(null);
-              }
-              handleChange("email")(e);
-            }}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="emailAgain"
-            label="Confirm Email Address"
-            name="emailAgain"
-            size="small"
-            type="email"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <PersonOutline className={classes.icon} />
-                </InputAdornment>
-              ),
-            }}
-            FormHelperTextProps={{ error: true }}
-            helperText={(() => {
-              if (status === "invalidEmailAgain") {
-                return "Email didn't match";
-              }
-              return null;
-            })()}
-            onChange={(e) => {
-              if (status === "invalidEmailAgain") {
-                setStatus(null);
-              }
-              handleChange("emailAgain")(e);
-            }}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="handle"
-            label="Username"
-            name="handle"
-            size="small"
-            FormHelperTextProps={{ error: true }}
-            helperText={(() => {
-              if (status === "invalidHandle") {
-                return "Should have at least 6 characters.";
-              }
-              return null;
-            })()}
-            onChange={(e) => {
-              if (status === "invalidHandle") {
-                setStatus(null);
-              }
-              handleChange("handle")(e);
-            }}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="name"
-            label="Your Name"
-            name="name"
-            size="small"
-            FormHelperTextProps={{ error: true }}
-            helperText={(() => {
-              if (status === "invalidName") {
-                return "Invalid Name";
-              }
-              return null;
-            })()}
-            onChange={(e) => {
-              if (status === "invalidName") {
-                setStatus(null);
-              }
-              handleChange("name")(e);
-            }}
-            error={status === "invalidName"}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type={isPasswordVisible ? "text" : "password"}
-            id="password"
-            autoComplete="current-password"
-            size="small"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                    className={classes.icon}
-                  >
-                    {isPasswordVisible ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            FormHelperTextProps={{ error: true }}
-            helperText={(() => {
-              if (status === "invalidPassword") {
-                return "Should have at least 8 characters.";
-              }
-              return null;
-            })()}
-            onChange={(e) => {
-              if (status === "invalidPassword") {
-                setStatus(null);
-              }
-              handleChange("password")(e);
-            }}
-            error={status === "invalidPassword"}
-          />
-          <Box pl={2} pr={2}>
-            <Typography variant="caption" className={classes.greyText}>
-              Password must be at least 8 characters and contain 1 special
-              character or number.
-            </Typography>
-            <FormControl required error={status === "termsNotAgreed"}>
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      value="accept"
-                      onChange={(e) => {
-                        if (status === "termsNotAgreed") {
-                          setStatus(null);
-                        }
-                      }}
-                      inputRef={termsRef}
-                      action={setAction}
-                    />
-                  }
-                  label={
-                    <Typography variant="caption" className={classes.greyText}>
-                      By signing up, you agree to the{" "}
-                      <Link className={classes.link}>Terms and Conditions</Link>{" "}
-                      and
-                      <Link className={classes.link}> Privacy Policy</Link>.
-                    </Typography>
-                  }
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              size="small"
+              type="email"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <PersonOutline className={classes.icon} />
+                  </InputAdornment>
+                ),
+              }}
+              FormHelperTextProps={{ error: true }}
+              helperText={(() => {
+                if (status === "invalidEmail") {
+                  return "Invalid email";
+                }
+                return null;
+              })()}
+              onChange={(e) => {
+                if (status === "invalidEmail") {
+                  setStatus(null);
+                }
+                handleChange("email")(e);
+              }}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="emailAgain"
+              label="Confirm Email Address"
+              name="emailAgain"
+              size="small"
+              type="email"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <PersonOutline className={classes.icon} />
+                  </InputAdornment>
+                ),
+              }}
+              FormHelperTextProps={{ error: true }}
+              helperText={(() => {
+                if (status === "invalidEmailAgain") {
+                  return "Email didn't match";
+                }
+                return null;
+              })()}
+              onChange={(e) => {
+                if (status === "invalidEmailAgain") {
+                  setStatus(null);
+                }
+                handleChange("emailAgain")(e);
+              }}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="handle"
+              label="Username"
+              name="handle"
+              size="small"
+              FormHelperTextProps={{ error: true }}
+              helperText={(() => {
+                if (status === "invalidHandle") {
+                  return "Should have at least 6 characters.";
+                }
+                return null;
+              })()}
+              onChange={(e) => {
+                if (status === "invalidHandle") {
+                  setStatus(null);
+                }
+                handleChange("handle")(e);
+              }}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Your Name"
+              name="name"
+              size="small"
+              FormHelperTextProps={{ error: true }}
+              helperText={(() => {
+                if (status === "invalidName") {
+                  return "Invalid Name";
+                }
+                return null;
+              })()}
+              onChange={(e) => {
+                if (status === "invalidName") {
+                  setStatus(null);
+                }
+                handleChange("name")(e);
+              }}
+              error={status === "invalidName"}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type={isPasswordVisible ? "text" : "password"}
+              id="password"
+              autoComplete="current-password"
+              size="small"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                      className={classes.icon}
+                    >
+                      {isPasswordVisible ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              FormHelperTextProps={{ error: true }}
+              helperText={(() => {
+                if (status === "invalidPassword") {
+                  return "Should have at least 8 characters.";
+                }
+                return null;
+              })()}
+              onChange={(e) => {
+                if (status === "invalidPassword") {
+                  setStatus(null);
+                }
+                handleChange("password")(e);
+              }}
+              error={status === "invalidPassword"}
+            />
+            <Box pl={2} pr={2}>
+              <Typography variant="caption" className={classes.greyText}>
+                Password must be at least 8 characters and contain 1 special
+                character or number.
+              </Typography>
+              <FormControl required error={status === "termsNotAgreed"}>
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        value="accept"
+                        onChange={(e) => {
+                          if (status === "termsNotAgreed") {
+                            setStatus(null);
+                          }
+                        }}
+                        inputRef={termsRef}
+                        action={setAction}
+                      />
+                    }
+                    label={
+                      <Typography
+                        variant="caption"
+                        className={classes.greyText}
+                      >
+                        By signing up, you agree to the{" "}
+                        <Link className={classes.link}>
+                          Terms and Conditions
+                        </Link>{" "}
+                        and
+                        <Link className={classes.link}> Privacy Policy</Link>.
+                      </Typography>
+                    }
+                  />
+                </FormGroup>
+              </FormControl>
+            </Box>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={cx(classes.button, classes.submit)}
+            >
+              Sign Up
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={cx(classes.button, classes.google)}
+              startIcon={
+                <img
+                  src={process.env.PUBLIC_URL + "/assets/google.png"}
+                  alt="Google Logo"
                 />
-              </FormGroup>
-            </FormControl>
-          </Box>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={cx(classes.button, classes.submit)}
-          >
-            Sign Up
-          </Button>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={cx(classes.button, classes.google)}
-            startIcon={
-              <img
-                src={process.env.PUBLIC_URL + "/assets/google.png"}
-                alt="Google Logo"
-              />
-            }
-          >
-            Sign up with Google
-          </Button>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={cx(classes.button, classes.twitter)}
-            startIcon={<Twitter />}
-          >
-            Sign up with Twitter
-          </Button>
-          <Grid container>
-            <Grid item xs></Grid>
-            <Grid item>
-              <Link to="/signin" className={classes.link}>
-                {"Already have an account? Sign in"}
-              </Link>
+              }
+            >
+              Sign up with Google
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={cx(classes.button, classes.twitter)}
+              startIcon={<Twitter />}
+            >
+              Sign up with Twitter
+            </Button>
+            <Grid container>
+              <Grid item xs></Grid>
+              <Grid item>
+                <Link to="/signin" className={classes.link}>
+                  {"Already have an account? Sign in"}
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
+          </form>
+        </Fade>
       </div>
     </Container>
   );

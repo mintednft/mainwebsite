@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { Link } from "react-router-dom";
+import Pulse from "react-reveal/Pulse";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -56,24 +57,26 @@ export default function Heading({
 }) {
   const classes = useStyles();
   return (
-    <div className={classes.wrapper}>
-      {live && (
-        <FiberManualRecordIcon fontSize="small" className={classes.live} />
-      )}
-      <Typography variant="h4" className={classes.heading}>
-        {children}
-      </Typography>
-      <div className={classes.grow}></div>
-      {label && (
-        <Typography
-          variant="h5"
-          component={Link}
-          to={href}
-          className={classes.action}
-        >
-          {label}
+    <Pulse>
+      <div className={classes.wrapper}>
+        {live && (
+          <FiberManualRecordIcon fontSize="small" className={classes.live} />
+        )}
+        <Typography variant="h4" className={classes.heading}>
+          {children}
         </Typography>
-      )}
-    </div>
+        <div className={classes.grow}></div>
+        {label && (
+          <Typography
+            variant="h5"
+            component={Link}
+            to={href}
+            className={classes.action}
+          >
+            {label}
+          </Typography>
+        )}
+      </div>
+    </Pulse>
   );
 }

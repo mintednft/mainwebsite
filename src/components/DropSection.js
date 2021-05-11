@@ -21,6 +21,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Heading from "./Heading";
 import Container from "@material-ui/core/Container";
+import { Fade, Zoom } from "react-reveal";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -152,41 +153,43 @@ function History({ data = HISTORY_DATA }) {
   const classes = useStyles();
   return (
     <List className={classes.listRoot}>
-      {data.map(({ handle, time, action, image, price, crypto }, i) => (
-        <ListItem key={i.toString()} className={classes.listItem}>
-          <ListItemAvatar>
-            <Avatar src={image} />
-          </ListItemAvatar>
-          <ListItemText
-            primary={
-              <Typography variant="caption" component="p">
-                Listed by{" "}
-                <Typography variant="caption" className={classes.caption}>
-                  @{handle}
+      <Fade up cascade>
+        {data.map(({ handle, time, action, image, price, crypto }, i) => (
+          <ListItem key={i.toString()} className={classes.listItem}>
+            <ListItemAvatar>
+              <Avatar src={image} />
+            </ListItemAvatar>
+            <ListItemText
+              primary={
+                <Typography variant="caption" component="p">
+                  Listed by{" "}
+                  <Typography variant="caption" className={classes.caption}>
+                    @{handle}
+                  </Typography>
                 </Typography>
-              </Typography>
-            }
-            secondary={
-              <Typography
-                variant="caption"
-                component="p"
-                className={classes.caption}
-              >
-                {time}
-              </Typography>
-            }
-          />
-          <ListItemSecondaryAction className={classes.listAction}>
-            <Box mr={1} fontSize={14} fontWeight={500} lineHeight={0.5}>
-              <p>{price}</p>
-              <p className={classes.caption}>{crypto}</p>
-            </Box>
-            <IconButton edge="end" aria-label="comments">
-              <ExitToApp />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
-      ))}
+              }
+              secondary={
+                <Typography
+                  variant="caption"
+                  component="p"
+                  className={classes.caption}
+                >
+                  {time}
+                </Typography>
+              }
+            />
+            <ListItemSecondaryAction className={classes.listAction}>
+              <Box mr={1} fontSize={14} fontWeight={500} lineHeight={0.5}>
+                <p>{price}</p>
+                <p className={classes.caption}>{crypto}</p>
+              </Box>
+              <IconButton edge="end" aria-label="comments">
+                <ExitToApp />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </Fade>
     </List>
   );
 }
@@ -206,23 +209,25 @@ function OtherViews({ data = OTHER_VIEWS_DATA }) {
   const classes = useStyles();
   return (
     <List className={classes.listRoot}>
-      {data.map(({ platform, url }) => (
-        <ListItem key={platform} className={classes.listItem}>
-          <ListItemText
-            primary={<Typography variant="h5">View on {platform}</Typography>}
-          />
-          <ListItemSecondaryAction className={classes.listAction}>
-            <IconButton
-              edge="end"
-              aria-label="external-link"
-              component="a"
-              href={url}
-            >
-              <ExitToApp />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
-      ))}
+      <Fade up cascade>
+        {data.map(({ platform, url }) => (
+          <ListItem key={platform} className={classes.listItem}>
+            <ListItemText
+              primary={<Typography variant="h5">View on {platform}</Typography>}
+            />
+            <ListItemSecondaryAction className={classes.listAction}>
+              <IconButton
+                edge="end"
+                aria-label="external-link"
+                component="a"
+                href={url}
+              >
+                <ExitToApp />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </Fade>
     </List>
   );
 }
@@ -246,32 +251,34 @@ function InfluencerAndArtist({ influencer = {}, artist = {} }) {
     <React.Fragment>
       <Heading>INFLUENCER x ARTIST</Heading>
       <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar src={influencer.image} className={classes.avatar} />
-          </ListItemAvatar>
-          <ListItemText
-            primary={<Typography variant="h3">{influencer.name}</Typography>}
-            secondary={
-              <Typography variant="h4" className={classes.caption}>
-                @{influencer.handle}
-              </Typography>
-            }
-          />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar src={artist.image} className={classes.avatar} />
-          </ListItemAvatar>
-          <ListItemText
-            primary={<Typography variant="h3">{artist.name}</Typography>}
-            secondary={
-              <Typography variant="h4" className={classes.caption}>
-                @{artist.handle}
-              </Typography>
-            }
-          />
-        </ListItem>
+        <Fade up cascade>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar src={influencer.image} className={classes.avatar} />
+            </ListItemAvatar>
+            <ListItemText
+              primary={<Typography variant="h3">{influencer.name}</Typography>}
+              secondary={
+                <Typography variant="h4" className={classes.caption}>
+                  @{influencer.handle}
+                </Typography>
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar src={artist.image} className={classes.avatar} />
+            </ListItemAvatar>
+            <ListItemText
+              primary={<Typography variant="h3">{artist.name}</Typography>}
+              secondary={
+                <Typography variant="h4" className={classes.caption}>
+                  @{artist.handle}
+                </Typography>
+              }
+            />
+          </ListItem>
+        </Fade>
       </List>
     </React.Fragment>
   );
@@ -283,11 +290,13 @@ export default function DropSection({}) {
   return (
     <div className={classes.wrapper}>
       <Card className={classes.card} elevation={0}>
-        <CardMedia
-          className={classes.media}
-          image={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
-          title={"Drop Name"}
-        />
+        <Zoom>
+          <CardMedia
+            className={classes.media}
+            image={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
+            title={"Drop Name"}
+          />
+        </Zoom>
       </Card>
       <Container className={classes.relative}>
         <Grid container spacing={4}>
@@ -296,77 +305,82 @@ export default function DropSection({}) {
               @russellwilson
             </Button>
             <Box mt={9}>
-              <div className={classes.details}>
-                <Typography variant="h3">Night Universe Sky</Typography>
-              </div>
+              <Fade up cascade>
+                <div className={classes.details}>
+                  <Typography variant="h3">Night Universe Sky</Typography>
+                </div>
 
-              <div className={classes.section}>
-                <Typography className={classes.label} variant="h4">
-                  Description
-                </Typography>
-                <Typography className={classes.description} title="">
-                  'Simulacra' is an approximate recreation of a lost video piece
-                  from memory. Our memories are in a constant state of flux.
-                  They change as our frame of reference does; they grow old as
-                  we do. 'Simulacra' is a copy of something that no longer
-                  exists: a story I have forgotten, remembered and retold as
-                  best I can.
-                </Typography>
-              </div>
-              <div className={classes.section}>
-                <Typography className={classes.label} variant="h4">
-                  Edition of
-                </Typography>
-                <Typography variant="h3">1</Typography>
-              </div>
-              <div className={classes.section}>
-                <OtherViews />
-              </div>
+                <div className={classes.section}>
+                  <Typography className={classes.label} variant="h4">
+                    Description
+                  </Typography>
+                  <Typography className={classes.description} title="">
+                    'Simulacra' is an approximate recreation of a lost video
+                    piece from memory. Our memories are in a constant state of
+                    flux. They change as our frame of reference does; they grow
+                    old as we do. 'Simulacra' is a copy of something that no
+                    longer exists: a story I have forgotten, remembered and
+                    retold as best I can.
+                  </Typography>
+                </div>
+                <div className={classes.section}>
+                  <Typography className={classes.label} variant="h4">
+                    Edition of
+                  </Typography>
+                  <Typography variant="h3">1</Typography>
+                </div>
+                <div className={classes.section}>
+                  <OtherViews />
+                </div>
+              </Fade>
             </Box>
           </Grid>
           <Grid item xs={12} md={5}>
             <ActionButtons />
             <Box display="flex" mt={9}>
               <Box flexGrow={1}></Box>
+
               <Box>
-                <Paper elevation={2} className={classes.paper}>
-                  <Box p={3}>
-                    <Grid container={2}>
-                      <Grid item xs className={classes.borderRight}>
-                        <BidPrice />
-                      </Grid>
-                      <Grid item xs>
-                        <Box pl={3} pr={2}>
-                          <Typography variant="caption" component="p">
-                            Once the starting bid has been placed, a 72-hour
-                            auction for this artwork will begin.
-                          </Typography>
-                          <Box mt={3}>
-                            <Typography
-                              variant="caption"
-                              component="p"
-                              className={classes.caption}
-                            >
-                              <Link>Learn more</Link>
+                <Fade up cascade>
+                  <Paper elevation={2} className={classes.paper}>
+                    <Box p={3}>
+                      <Grid container={2}>
+                        <Grid item xs className={classes.borderRight}>
+                          <BidPrice />
+                        </Grid>
+                        <Grid item xs>
+                          <Box pl={3} pr={2}>
+                            <Typography variant="caption" component="p">
+                              Once the starting bid has been placed, a 72-hour
+                              auction for this artwork will begin.
                             </Typography>
+                            <Box mt={3}>
+                              <Typography
+                                variant="caption"
+                                component="p"
+                                className={classes.caption}
+                              >
+                                <Link>Learn more</Link>
+                              </Typography>
+                            </Box>
                           </Box>
-                        </Box>
+                        </Grid>
                       </Grid>
-                    </Grid>
+                    </Box>
+                    <Divider />
+                    <Box p={2}>
+                      <Button fullWidth className={classes.placeBidButton}>
+                        Place a bid
+                      </Button>
+                    </Box>
+                  </Paper>
+                  <Box mt={3}>
+                    <Typography className={classes.label} variant="h3">
+                      History
+                    </Typography>
+                    <History />
                   </Box>
-                  <Divider />
-                  <Box p={2}>
-                    <Button fullWidth className={classes.placeBidButton}>
-                      Place a bid
-                    </Button>
-                  </Box>
-                </Paper>
-                <Box mt={3}>
-                  <Typography className={classes.label} variant="h3">
-                    History
-                  </Typography>
-                  <History />
-                </Box>
+                </Fade>
               </Box>
             </Box>
           </Grid>

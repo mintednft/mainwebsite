@@ -2,6 +2,7 @@ import React from "react";
 import { fade, makeStyles, withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import Zoom from "react-reveal/Zoom";
 import { getMockDrops } from "../mocks";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,11 +32,13 @@ export default function CardList({
       <Grid container spacing={1} justify="flex-start">
         {data.map((o, i) => (
           <Grid item xs key={i.toString()}>
-            <div className={classes.item}>
-              <Link to={getLink(o)}>
-                <Card {...o} />
-              </Link>
-            </div>
+            <Zoom>
+              <div className={classes.item}>
+                <Link to={getLink(o)}>
+                  <Card {...o} />
+                </Link>
+              </div>
+            </Zoom>
           </Grid>
         ))}
       </Grid>
