@@ -32,8 +32,17 @@ const theme = createMuiTheme({
     secondary: {
       main: SECONDARY,
     },
+    success: {
+      main: "#04C904",
+    },
     error: {
-      main: red.A400,
+      main: "#EB5757",
+    },
+    warning: {
+      main: "#F2C94C",
+    },
+    info: {
+      main: "#3250FE",
     },
     background: {
       default: "#FEFEFE",
@@ -50,7 +59,6 @@ const theme = createMuiTheme({
       700: "#595959",
       900: "#262626",
     },
-    link: "#3250FE",
   },
   typography: {
     fontSize: 14,

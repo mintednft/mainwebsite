@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     minHeight: theme.spacing(5),
   },
   submit: {
-    background: "#04C904",
+    background: theme.palette.success.main,
     "&:hover": {
-      background: "#04C904",
+      background: theme.palette.success.light,
     },
   },
   google: {
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   link: {
-    color: "#3250FE",
+    color: theme.palette.info.main,
   },
 }));
 

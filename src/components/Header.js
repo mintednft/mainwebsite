@@ -76,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(0.25),
       textAlign: "center",
       color: theme.palette.background.paper,
+      fontStyle: "italic",
     },
   },
   sectionDesktop: {
@@ -115,11 +116,13 @@ const useStyles = makeStyles((theme) => ({
   link: {
     fontSize: 18,
     margin: theme.spacing(1.5, 1),
+    padding: theme.spacing(0.5, 2),
     "&.active": {
       background: theme.palette.secondary.main,
       color: theme.palette.background.default,
       borderRadius: theme.spacing(1.25),
     },
+    fontWeight: 400,
   },
   button: {
     fontSize: 18,

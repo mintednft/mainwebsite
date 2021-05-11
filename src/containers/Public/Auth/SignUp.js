@@ -15,7 +15,13 @@ import cx from "clsx";
 import Twitter from "@material-ui/icons/Twitter";
 import Box from "@material-ui/core/Box";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
 import Checkbox from "@material-ui/core/Checkbox";
+
+import { useDispatch } from "react-redux";
+
+import { isValidEmail } from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,9 +43,9 @@ const useStyles = makeStyles((theme) => ({
     minHeight: theme.spacing(5),
   },
   submit: {
-    background: "#04C904",
+    background: theme.palette.success.main,
     "&:hover": {
-      background: "#04C904",
+      background: theme.palette.success.light,
     },
   },
   google: {
@@ -62,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   link: {
-    color: "#3250FE",
+    color: theme.palette.info.main,
   },
   greyText: {
     color: theme.palette.grey[400],
@@ -75,23 +81,73 @@ export default function SignIn() {
   const [values, setValues] = React.useState({
     email: "",
     emailAgain: "",
-    username: "",
+    handle: "",
     name: "",
     password: "",
-    showPassword: false,
   });
+
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [status, setStatus] = React.useState(null);
+  const [action, setAction] = React.useState();
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
+  const [isPasswordVisible, setPasswordVisibility] = React.useState(false);
+
+  const handleClickShowPassword = React.useCallback(() => {
+    setPasswordVisibility(!isPasswordVisible);
+  }, [isPasswordVisible, setPasswordVisibility]);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const dispatch = useDispatch();
+
+  const termsRef = React.useRef();
+
+  const register = React.useCallback(() => {
+    console.error(values);
+    if (!isValidEmail(values.email)) {
+      setStatus("invalidEmail");
+      return;
+    }
+    if (values.email !== values.emailAgain) {
+      setStatus("invalidEmailAgain");
+      return;
+    }
+    if (values.name.length < 3) {
+      setStatus("invalidName");
+      return;
+    }
+    if (values.handle.length < 6) {
+      setStatus("invalidHandle");
+      return;
+    }
+    if (values.password.length < 8) {
+      setStatus("invalidPassword");
+      return;
+    }
+    if (!termsRef.current.checked) {
+      action.focusVisible();
+      setStatus("termsNotAgreed");
+      return;
+    }
+    setStatus(null);
+    setIsLoading(true);
+    const { emailAgain, ...payload } = values;
+    //dispatch(registerUserAction(payload));
+  }, [values, termsRef, action, setStatus, setIsLoading, dispatch]);
+
+  const handleSubmit = React.useCallback(
+    (e) => {
+      e.preventDefault();
+      register();
+    },
+    [register]
+  );
 
   return (
     <Container maxWidth="xs">
@@ -107,7 +163,7 @@ export default function SignIn() {
         {/* <Typography variant="h6" className={classes.text}>
           Please login to continue
         </Typography> */}
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -119,7 +175,6 @@ export default function SignIn() {
             autoComplete="email"
             autoFocus
             size="small"
-            onChange={handleChange("email")}
             type="email"
             InputProps={{
               endAdornment: (
@@ -127,6 +182,19 @@ export default function SignIn() {
                   <PersonOutline className={classes.icon} />
                 </InputAdornment>
               ),
+            }}
+            FormHelperTextProps={{ error: true }}
+            helperText={(() => {
+              if (status === "invalidEmail") {
+                return "Invalid email";
+              }
+              return null;
+            })()}
+            onChange={(e) => {
+              if (status === "invalidEmail") {
+                setStatus(null);
+              }
+              handleChange("email")(e);
             }}
           />
           <TextField
@@ -139,7 +207,6 @@ export default function SignIn() {
             name="emailAgain"
             size="small"
             type="email"
-            onChange={handleChange("emailAgain")}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -147,17 +214,42 @@ export default function SignIn() {
                 </InputAdornment>
               ),
             }}
+            FormHelperTextProps={{ error: true }}
+            helperText={(() => {
+              if (status === "invalidEmailAgain") {
+                return "Email didn't match";
+              }
+              return null;
+            })()}
+            onChange={(e) => {
+              if (status === "invalidEmailAgain") {
+                setStatus(null);
+              }
+              handleChange("emailAgain")(e);
+            }}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="username"
+            id="handle"
             label="Username"
-            name="username"
+            name="handle"
             size="small"
-            onChange={handleChange("username")}
+            FormHelperTextProps={{ error: true }}
+            helperText={(() => {
+              if (status === "invalidHandle") {
+                return "Should have at least 6 characters.";
+              }
+              return null;
+            })()}
+            onChange={(e) => {
+              if (status === "invalidHandle") {
+                setStatus(null);
+              }
+              handleChange("handle")(e);
+            }}
           />
           <TextField
             variant="outlined"
@@ -168,7 +260,20 @@ export default function SignIn() {
             label="Your Name"
             name="name"
             size="small"
-            onChange={handleChange("name")}
+            FormHelperTextProps={{ error: true }}
+            helperText={(() => {
+              if (status === "invalidName") {
+                return "Invalid Name";
+              }
+              return null;
+            })()}
+            onChange={(e) => {
+              if (status === "invalidName") {
+                setStatus(null);
+              }
+              handleChange("name")(e);
+            }}
+            error={status === "invalidName"}
           />
           <TextField
             variant="outlined"
@@ -177,11 +282,10 @@ export default function SignIn() {
             fullWidth
             name="password"
             label="Password"
-            type={values.showPassword ? "text" : "password"}
+            type={isPasswordVisible ? "text" : "password"}
             id="password"
             autoComplete="current-password"
             size="small"
-            onChange={handleChange("password")}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -192,27 +296,57 @@ export default function SignIn() {
                     edge="end"
                     className={classes.icon}
                   >
-                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                    {isPasswordVisible ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               ),
             }}
+            FormHelperTextProps={{ error: true }}
+            helperText={(() => {
+              if (status === "invalidPassword") {
+                return "Should have at least 8 characters.";
+              }
+              return null;
+            })()}
+            onChange={(e) => {
+              if (status === "invalidPassword") {
+                setStatus(null);
+              }
+              handleChange("password")(e);
+            }}
+            error={status === "invalidPassword"}
           />
           <Box pl={2} pr={2}>
             <Typography variant="caption" className={classes.greyText}>
               Password must be at least 8 characters and contain 1 special
               character or number.
             </Typography>
-            <FormControlLabel
-              control={<Checkbox value="accept" />}
-              label={
-                <Typography variant="caption" className={classes.greyText}>
-                  By signing up, you agree to the{" "}
-                  <Link className={classes.link}>Terms and Conditions</Link> and
-                  <Link className={classes.link}> Privacy Policy</Link>.
-                </Typography>
-              }
-            />
+            <FormControl required error={status === "termsNotAgreed"}>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      value="accept"
+                      onChange={(e) => {
+                        if (status === "termsNotAgreed") {
+                          setStatus(null);
+                        }
+                      }}
+                      inputRef={termsRef}
+                      action={setAction}
+                    />
+                  }
+                  label={
+                    <Typography variant="caption" className={classes.greyText}>
+                      By signing up, you agree to the{" "}
+                      <Link className={classes.link}>Terms and Conditions</Link>{" "}
+                      and
+                      <Link className={classes.link}> Privacy Policy</Link>.
+                    </Typography>
+                  }
+                />
+              </FormGroup>
+            </FormControl>
           </Box>
           <Button
             type="submit"
