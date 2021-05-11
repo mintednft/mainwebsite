@@ -8,9 +8,11 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxHeight: 320,
   },
-  h2: {
-    fontWeight: 700,
-    fontSize: 64,
+  bannerContent: {
+    margin: "auto",
+    textAlign: "center",
+    padding: theme.spacing(9),
+    maxWidth: theme.breakpoints.values.md,
   },
   h5: {
     fontWeight: 400,
@@ -25,7 +27,13 @@ const Banner = ({ image, name }) => {
   const classes = useStyles();
   return (
     <CardMedia className={classes.media} image={image} title={name}>
-      <Typography variant="h2">{name}</Typography>
+      <div className={classes.bannerContent}>
+        <Typography variant="h1">{name}</Typography>
+        <Typography variant="h4">
+          Minted converts your social media into social impact. Proceeds go
+          towards the people and causes you care about.
+        </Typography>
+      </div>
     </CardMedia>
   );
 };
@@ -33,15 +41,15 @@ const Banner = ({ image, name }) => {
 const CAROUSEL_ITEMS = [
   {
     image: process.env.PUBLIC_URL + "/assets/artistcover.png",
-    name: "Banner 1",
+    name: "NFTs for Social Good",
   },
   {
     image: process.env.PUBLIC_URL + "/assets/seahawk.png",
-    name: "Banner 2",
+    name: "NFTs for Social Good",
   },
   {
     image: process.env.PUBLIC_URL + "/assets/artistcover.png",
-    name: "Banner 3",
+    name: "NFTs for Social Good",
   },
 ];
 
@@ -58,7 +66,7 @@ export default function Hero() {
       </Typography> */}
       <Carousel
         className={classes.carousel}
-        autoPlay={true}
+        autoPlay={false}
         animation="fade"
         cycleNavigation={true}
         // fullHeightHover={false}

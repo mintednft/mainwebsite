@@ -15,9 +15,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 1024,
   },
   img: {
-    boxShadow: "2.87957px 2.87957px 2.87957px 7.20781px rgba(0, 0, 0, 0.125)",
+    //boxShadow: "2.87957px 2.87957px 2.87957px 7.20781px rgba(0, 0, 0, 0.125)",
     display: "block",
     margin: "auto",
+    borderRadius: theme.shape.borderRadius,
   },
   handleButton: {
     marginTop: theme.spacing(4),
@@ -67,7 +68,7 @@ export default function FeaturedDrop() {
         <Grid container spacing={2}>
           <Grid item md={6}>
             <img
-              src={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
+              src={process.env.PUBLIC_URL + "/assets/palm_spring.png"}
               className={classes.img}
               alt="Featured Drop"
             />
