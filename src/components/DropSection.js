@@ -293,7 +293,7 @@ export default function DropSection({}) {
         <Zoom>
           <CardMedia
             className={classes.media}
-            image={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
+            image={process.env.PUBLIC_URL + "/assets/saturn.png"}
             title={"Drop Name"}
           />
         </Zoom>
