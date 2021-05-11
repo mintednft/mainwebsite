@@ -22,6 +22,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { useDispatch } from "react-redux";
 
 import { isValidEmail } from "../../../utils";
+import { registerUserAction } from "../../../store/actions/auth";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -138,7 +139,7 @@ export default function SignIn() {
     setStatus(null);
     setIsLoading(true);
     const { emailAgain, ...payload } = values;
-    //dispatch(registerUserAction(payload));
+    dispatch(registerUserAction({ ...payload, id: values.email }));
   }, [values, termsRef, action, setStatus, setIsLoading, dispatch]);
 
   const handleSubmit = React.useCallback(
