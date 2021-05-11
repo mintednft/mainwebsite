@@ -11,8 +11,13 @@ const useStyles = makeStyles((theme) => ({
   bannerContent: {
     margin: "auto",
     textAlign: "center",
-    padding: theme.spacing(9),
+    padding: theme.spacing(6),
     maxWidth: theme.breakpoints.values.md,
+    background: "rgba(250, 250, 250, 0.5)",
+  },
+  h2: {
+    fontWeight: 700,
+    fontSize: 64,
   },
   h5: {
     fontWeight: 400,
@@ -20,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 320,
+    display: "flex",
   },
 }));
 
