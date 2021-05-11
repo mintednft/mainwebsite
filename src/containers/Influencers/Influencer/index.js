@@ -22,7 +22,7 @@ export default function Influencer() {
     <React.Fragment>
       <ProfileSection {...DUMMY_CARD_DATA}>
         <Heading>Releases</Heading>
-        <CardList card={DropCard} data={[...new Array(2)]} />
+        <CardList card={DropCard} />
       </ProfileSection>
     </React.Fragment>
   );

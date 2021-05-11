@@ -20,6 +20,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Heading from "./Heading";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -122,6 +123,9 @@ const useStyles = makeStyles((theme) => ({
   },
   listAction: {
     display: "flex",
+  },
+  relative: {
+    position: "relative",
   },
 }));
 
@@ -284,42 +288,45 @@ export default function DropSection({}) {
           image={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
           title={"Drop Name"}
         />
-        <Button size="large" className={classes.handleButton}>
-          @russellwilson
-        </Button>
-        <ActionButtons />
       </Card>
-      <Box mt={9}>
+      <Container className={classes.relative}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={7}>
-            <div className={classes.details}>
-              <Typography variant="h3">Night Universe Sky</Typography>
-            </div>
+            <Button size="large" className={classes.handleButton}>
+              @russellwilson
+            </Button>
+            <Box mt={9}>
+              <div className={classes.details}>
+                <Typography variant="h3">Night Universe Sky</Typography>
+              </div>
 
-            <div className={classes.section}>
-              <Typography className={classes.label} variant="h4">
-                Description
-              </Typography>
-              <Typography className={classes.description} title="">
-                'Simulacra' is an approximate recreation of a lost video piece
-                from memory. Our memories are in a constant state of flux. They
-                change as our frame of reference does; they grow old as we do.
-                'Simulacra' is a copy of something that no longer exists: a
-                story I have forgotten, remembered and retold as best I can.
-              </Typography>
-            </div>
-            <div className={classes.section}>
-              <Typography className={classes.label} variant="h4">
-                Edition of
-              </Typography>
-              <Typography variant="h3">1</Typography>
-            </div>
-            <div className={classes.section}>
-              <OtherViews />
-            </div>
+              <div className={classes.section}>
+                <Typography className={classes.label} variant="h4">
+                  Description
+                </Typography>
+                <Typography className={classes.description} title="">
+                  'Simulacra' is an approximate recreation of a lost video piece
+                  from memory. Our memories are in a constant state of flux.
+                  They change as our frame of reference does; they grow old as
+                  we do. 'Simulacra' is a copy of something that no longer
+                  exists: a story I have forgotten, remembered and retold as
+                  best I can.
+                </Typography>
+              </div>
+              <div className={classes.section}>
+                <Typography className={classes.label} variant="h4">
+                  Edition of
+                </Typography>
+                <Typography variant="h3">1</Typography>
+              </div>
+              <div className={classes.section}>
+                <OtherViews />
+              </div>
+            </Box>
           </Grid>
           <Grid item xs={12} md={5}>
-            <Box display="flex">
+            <ActionButtons />
+            <Box display="flex" mt={9}>
               <Box flexGrow={1}></Box>
               <Box>
                 <Paper elevation={2} className={classes.paper}>
@@ -365,7 +372,7 @@ export default function DropSection({}) {
           </Grid>
         </Grid>
         <InfluencerAndArtist {...INFLUENCER_ARTIST_DATA} />
-      </Box>
+      </Container>
     </div>
   );
 }

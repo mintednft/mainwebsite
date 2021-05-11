@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Hero from "./components/Hero";
 import FeaturedDrop from "./components/FeaturedDrop";
 import LiveDrops from "../../components/LiveDrops";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({}));
 
@@ -11,8 +12,10 @@ export default function Home() {
   return (
     <React.Fragment>
       <Hero />
-      <FeaturedDrop />
-      <LiveDrops />
+      <Container>
+        <FeaturedDrop />
+        <LiveDrops />
+      </Container>
     </React.Fragment>
   );
 }

@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Heading from "./Heading";
 import CardList from "./CardList";
 import DropCard from "./DropCard";
+import { DROPS, getMockDrops } from "../mocks";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -22,7 +23,7 @@ export default function LiveDrops() {
       <Heading live action={{ href: "/drops", label: "View all drops" }}>
         Live drops
       </Heading>
-      <CardList card={DropCard} data={[...new Array(23)]} getLink={getLink} />
+      <CardList card={DropCard} data={getMockDrops()} getLink={getLink} />
     </div>
   );
 }

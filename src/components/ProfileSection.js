@@ -11,6 +11,7 @@ import { formatCash, truncateText, getSocialURL } from "../utils/index";
 import Instagram from "@material-ui/icons/Instagram";
 import Twitter from "@material-ui/icons/Twitter";
 import ActionButtons from "./ActionButtons";
+import Container from "@material-ui/core/Container";
 
 const SOCIAL_ICONS = {
   instagram: Instagram,
@@ -84,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
   socialIcon: {
     color: theme.palette.grey[900],
   },
+  main: {
+    position: "relative",
+  },
 }));
 
 function SocialLinks({ links = [] }) {
@@ -128,38 +132,40 @@ export default function ProfileSection({
           image={coverImg}
           title="Paella dish"
         />
-        <ActionButtons />
       </Card>
-      <Grid container spacing={2}>
-        <Grid item md={3}>
-          <Avatar className={classes.avatar} src={profileImg} />
-          <div className={classes.details}>
-            <Typography variant="h3">{name}</Typography>
-            <Button size="large" className={classes.handleButton}>
-              @{handle}
-            </Button>
-          </div>
-          <Divider />
-          <div className={classes.section}>
-            <Typography className={classes.label} variant="h4">
-              Bio
-            </Typography>
-            <Typography className={classes.about} title={about}>
-              {truncateText(about, 250)}
-            </Typography>
-          </div>
-          <Divider />
-          <div className={classes.section}>
-            <Typography className={classes.label} variant="h4">
-              Links
-            </Typography>
-            <SocialLinks links={social_links} />
-          </div>
+      <Container>
+        <Grid container spacing={2}>
+          <Grid item md={3}>
+            <Avatar className={classes.avatar} src={profileImg} />
+            <div className={classes.details}>
+              <Typography variant="h3">{name}</Typography>
+              <Button size="large" className={classes.handleButton}>
+                @{handle}
+              </Button>
+            </div>
+            <Divider />
+            <div className={classes.section}>
+              <Typography className={classes.label} variant="h4">
+                Bio
+              </Typography>
+              <Typography className={classes.about} title={about}>
+                {truncateText(about, 250)}
+              </Typography>
+            </div>
+            <Divider />
+            <div className={classes.section}>
+              <Typography className={classes.label} variant="h4">
+                Links
+              </Typography>
+              <SocialLinks links={social_links} />
+            </div>
+          </Grid>
+          <Grid item md={9} className={classes.main}>
+            <ActionButtons />
+            {children}
+          </Grid>
         </Grid>
-        <Grid item md={9}>
-          {children}
-        </Grid>
-      </Grid>
+      </Container>
     </div>
   );
 }

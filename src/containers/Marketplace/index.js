@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 import Hero from "./components/Hero";
 import FeaturedNFT from "./components/FeaturedNFT";
 import NFTList from "./components/NFTList";
@@ -11,8 +12,10 @@ export default function Marketplace() {
   return (
     <React.Fragment>
       <Hero />
-      <FeaturedNFT />
-      <NFTList />
+      <Container>
+        <FeaturedNFT />
+        <NFTList />
+      </Container>
     </React.Fragment>
   );
 }

@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
   main: {
     //marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
-    maxWidth: theme.breakpoints.values.lg + 300,
+    //maxWidth: theme.breakpoints.values.lg + 300,
+    padding: theme.spacing(0),
   },
   app: {
     display: "flex",
@@ -43,7 +44,7 @@ function App() {
     <Router>
       <div className={classes.app}>
         <Header />
-        <Container maxWidth="lg" fixed className={classes.main}>
+        <Container maxWidth={false} className={classes.main}>
           <Switch>
             <Route path="/signin">
               <SignIn />

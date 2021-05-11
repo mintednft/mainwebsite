@@ -45,21 +45,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DropCard() {
+export default function DropCard({
+  image,
+  name,
+  handle,
+  current_bid,
+  ending_in,
+}) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={process.env.PUBLIC_URL + "/assets/dummydrop.png"}
-        title="Paella dish"
-      />
+      <CardMedia className={classes.media} image={image} title={name} />
       <CardHeader
-        title={<Typography variant="h6">Days with Dad: Art Book</Typography>}
+        title={<Typography variant="h6">{name}</Typography>}
         subheader={
           <Typography variant="caption" className={classes.caption}>
-            @russellwilson
+            @{handle}
           </Typography>
         }
         className={classes.header}
@@ -69,11 +71,11 @@ export default function DropCard() {
         <Grid container>
           <Grid xs>
             <Typography className={classes.label}>Current bid</Typography>
-            <Typography className={classes.bid}>$2,899</Typography>
+            <Typography className={classes.bid}>${current_bid}</Typography>
           </Grid>
           <Grid xs>
             <Typography className={classes.label}>Ending in</Typography>
-            <Countdown />
+            <Countdown time={ending_in} />
           </Grid>
         </Grid>
       </CardActions>

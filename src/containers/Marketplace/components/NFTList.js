@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import DropCard from "../../../components/DropCard";
 import Heading from "../../../components/Heading";
 import CardList from "../../../components/CardList";
+import { getMockDrops } from "../../../mocks";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -17,7 +18,7 @@ export default function NFTList() {
       <Heading live action={{ href: "/drops", label: "View all NFTs" }}>
         NFTs for Sale
       </Heading>
-      <CardList card={DropCard} data={[...new Array(23)]} />
+      <CardList card={DropCard} data={getMockDrops()} />
     </div>
   );
 }

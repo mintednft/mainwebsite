@@ -2,6 +2,7 @@ import React from "react";
 import { fade, makeStyles, withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import { getMockDrops } from "../mocks";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardList({
   card: Card,
-  data = [],
+  data = getMockDrops(3),
   getLink = () => "",
 }) {
   const classes = useStyles();
