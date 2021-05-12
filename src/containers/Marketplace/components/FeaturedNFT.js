@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FeaturedDrop() {
+export default function FeaturedNFT() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
@@ -90,7 +90,7 @@ export default function FeaturedDrop() {
                 Night Universe Sky [Vale of Memory]
               </Typography>
               <Grid container spacing={2}>
-                <Grid item xs={6} justify="flex-start">
+                <Grid item xs={6}>
                   <Typography variant="h5" className={classes.h5}>
                     Price
                   </Typography>

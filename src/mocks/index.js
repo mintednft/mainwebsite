@@ -38,3 +38,9 @@ export const DROPS = [
 
 export const getMockDrops = (size = 24) =>
   [...new Array(size)].map((_, i) => DROPS[i % DROPS.length]);
+
+export const MOCK_USER = {
+  id: "salmaan.a.qadir@gmail.com",
+  name: "Sal Qadir",
+  image: process.env.PUBLIC_URL + "/assets/sal.png",
+};

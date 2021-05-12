@@ -18,6 +18,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import Checkbox from "@material-ui/core/Checkbox";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Fade from "react-reveal/Fade";
 
 import { useDispatch } from "react-redux";
@@ -361,6 +362,10 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               className={cx(classes.button, classes.submit)}
+              disabled={isLoading}
+              endIcon={
+                isLoading && <CircularProgress size={18} color="inherit" />
+              }
             >
               Sign Up
             </Button>

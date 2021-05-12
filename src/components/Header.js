@@ -19,8 +19,9 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Link, NavLink } from "react-router-dom";
-import cx from "clsx";
+import { Link, NavLink, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUserAction } from "../store/actions/auth";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -243,18 +244,28 @@ export default function Header() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
+  const handleMobileMenuClose = React.useCallback(() => {
     setMobileMoreAnchorEl(null);
-  };
+  }, [setMobileMoreAnchorEl]);
 
-  const handleMenuClose = () => {
+  const handleMenuClose = React.useCallback(() => {
     setAnchorEl(null);
     handleMobileMenuClose();
-  };
+  }, [setAnchorEl, handleMobileMenuClose]);
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const { token, user } = useSelector((state) => state.auth) ?? {};
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleLogout = React.useCallback(() => {
+    handleMenuClose();
+    dispatch(logoutUserAction());
+    history.push("/");
+  }, [dispatch, handleMenuClose, history]);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -269,10 +280,7 @@ export default function Header() {
       getContentAnchorEl={null}
     >
       <StyledMenuItem onClick={handleMenuClose}>
-        <ListItemText
-          primary="Signed in as: "
-          secondary="salmaan.a.qadir@gmail.com"
-        />
+        <ListItemText primary="Signed in as: " secondary={user.id} />
       </StyledMenuItem>
       <Divider />
       <StyledMenuItem onClick={handleMenuClose}>
@@ -285,7 +293,7 @@ export default function Header() {
         <ListItemText primary="Settings" />
       </StyledMenuItem>
       <Divider />
-      <StyledMenuItem onClick={handleMenuClose}>
+      <StyledMenuItem onClick={handleLogout}>
         <ListItemText primary="Logout" />
       </StyledMenuItem>
     </StyledMenu>
@@ -331,8 +339,6 @@ export default function Header() {
     </Menu>
   );
 
-  const isLoggedIn = window.localStorage.getItem("_ta");
-
   return (
     <div className={classes.grow}>
       <AppBar position="static" color="inherit" elevation={0}>
@@ -355,12 +361,12 @@ export default function Header() {
           <Navbar />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            {!isLoggedIn && (
+            {!token && (
               <Link to="/signin">
                 <Typography variant="h5">Login/Signup</Typography>
               </Link>
             )}
-            {isLoggedIn && (
+            {token && (
               <Button
                 className={classes.button}
                 aria-label="account of current user"
@@ -370,13 +376,13 @@ export default function Header() {
                 size="large"
                 startIcon={
                   <Avatar
-                    alt="Sal Qadir"
-                    src={process.env.PUBLIC_URL + "/assets/sal.png"}
+                    alt={user.name}
+                    src={user.image}
                     className={classes.avatarSmall}
                   ></Avatar>
                 }
               >
-                Sal Qadir
+                {user.name}
               </Button>
             )}
           </div>

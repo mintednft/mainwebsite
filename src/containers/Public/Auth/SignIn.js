@@ -13,9 +13,16 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import cx from "clsx";
 import Twitter from "@material-ui/icons/Twitter";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Fade from "react-reveal/Fade";
 
 import { useHistory } from "react-router-dom";
+import useTempAuth from "../../../hooks/useTempAuth";
+import { useDispatch } from "react-redux";
+import { isValidEmail } from "../../../utils";
+import { loginUserAction } from "../../../store/actions/auth";
+import { AUTH_LOGIN_SUCCESS } from "../../../store/actionTypes";
+import { MOCK_USER } from "../../../mocks/index";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -79,15 +86,53 @@ export default function SignIn() {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
+  const [isPasswordVisible, setPasswordVisibility] = React.useState(false);
+
+  const handleClickShowPassword = React.useCallback(() => {
+    setPasswordVisibility(!isPasswordVisible);
+  }, [isPasswordVisible, setPasswordVisibility]);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [status, setStatus] = React.useState(null);
+
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const login = React.useCallback(() => {
+    console.error(values);
+    if (!isValidEmail(values.email)) {
+      setStatus("invalidEmail");
+      return;
+    }
+    if (values.password.length < 8) {
+      setStatus("invalidPassword");
+      return;
+    }
+    setStatus(null);
+    setIsLoading(true);
+    //TODO: Bypassing login for now
+    setTimeout(() => {
+      dispatch({
+        type: AUTH_LOGIN_SUCCESS,
+        payload: { token: "TOKEN", user: MOCK_USER },
+      });
+      history.push("/marketplace");
+    }, 1500);
+    //const { id, ...payload } = values;
+    //dispatch(loginUserAction({ ...payload, id: values.email }));
+  }, [values, setStatus, setIsLoading, dispatch]);
+
+  const handleSubmit = React.useCallback(
+    (e) => {
+      e.preventDefault();
+      login();
+    },
+    [login]
+  );
 
   return (
     <Container maxWidth="xs">
@@ -104,15 +149,7 @@ export default function SignIn() {
           <Typography variant="h6" className={classes.text}>
             Please login to continue
           </Typography>
-          <form
-            className={classes.form}
-            noValidate
-            onSubmit={(e) => {
-              e.preventDefault();
-              window.localStorage.setItem("_ta", 1);
-              history.push("/marketplace");
-            }}
-          >
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -124,13 +161,26 @@ export default function SignIn() {
               autoComplete="email"
               autoFocus
               size="small"
-              onChange={handleChange("email")}
+              type="email"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
                     <PersonOutline className={classes.icon} />
                   </InputAdornment>
                 ),
+              }}
+              FormHelperTextProps={{ error: true }}
+              helperText={(() => {
+                if (status === "invalidEmail") {
+                  return "Invalid email";
+                }
+                return null;
+              })()}
+              onChange={(e) => {
+                if (status === "invalidEmail") {
+                  setStatus(null);
+                }
+                handleChange("email")(e);
               }}
             />
             <TextField
@@ -140,11 +190,10 @@ export default function SignIn() {
               fullWidth
               name="password"
               label="Password"
-              type={values.showPassword ? "text" : "password"}
+              type={isPasswordVisible ? "text" : "password"}
               id="password"
               autoComplete="current-password"
               size="small"
-              onChange={handleChange("password")}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -155,17 +204,35 @@ export default function SignIn() {
                       edge="end"
                       className={classes.icon}
                     >
-                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                      {isPasswordVisible ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
+              FormHelperTextProps={{ error: true }}
+              helperText={(() => {
+                if (status === "invalidPassword") {
+                  return "Should have at least 8 characters.";
+                }
+                return null;
+              })()}
+              onChange={(e) => {
+                if (status === "invalidPassword") {
+                  setStatus(null);
+                }
+                handleChange("password")(e);
+              }}
+              error={status === "invalidPassword"}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               className={cx(classes.button, classes.submit)}
+              disabled={isLoading}
+              endIcon={
+                isLoading && <CircularProgress size={18} color="inherit" />
+              }
             >
               Sign In
             </Button>
