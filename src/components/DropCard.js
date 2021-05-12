@@ -13,8 +13,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: 300,
     borderRadius: theme.spacing(1.25),
+    transition: "all 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s",
     "&:hover": {
-      marginTop: -2,
+      transform: `translateY(-2px)`,
     },
     "&:hover > $header, &:hover > $caption": {
       backgroundColor: theme.palette.secondary.main,
