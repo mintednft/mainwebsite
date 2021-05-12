@@ -8,6 +8,9 @@ import Fade from "react-reveal/Fade";
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxHeight: 320,
+    textAlign: "center",
+    maxWidth: theme.breakpoints.values.md,
+    margin: "40px auto",
   },
   bannerContent: {
     margin: "auto",
@@ -68,14 +71,18 @@ export default function Hero() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      {/* <Typography variant="h2" className={classes.h2}>
-        NFTs for Social Good
-      </Typography>
-      <Typography variant="h5" className={classes.h5}>
-        Minted converts your social media into social impact. Proceeds go
-        towards the people and causes you care about.
-      </Typography> */}
-      <Carousel
+      <Fade down>
+        <Typography variant="h2" className={classes.h2}>
+          NFTs for Social Good
+        </Typography>
+      </Fade>
+      <Fade up>
+        <Typography variant="h5" className={classes.h5}>
+          Minted converts your social media into social impact. Proceeds go
+          towards the people and causes you care about.
+        </Typography>
+      </Fade>
+      {/* <Carousel
         className={classes.carousel}
         autoPlay={true}
         animation="fade"
@@ -95,7 +102,7 @@ export default function Hero() {
         {CAROUSEL_ITEMS.map((item, i) => {
           return <Banner {...item} key={i.toString()} />;
         })}
-      </Carousel>
+      </Carousel> */}
     </div>
   );
 }
