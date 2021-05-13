@@ -7,6 +7,7 @@ import {
   Link,
   useRouteMatch,
   useParams,
+  Redirect,
 } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -55,7 +56,7 @@ function App() {
             <Route path="/question">
               <Question />
             </Route>
-            <Route path="/verify/:userType">
+            <Route path="/verify/:userType(influencer|artist)">
               <Verify />
             </Route>
             <Route path="/marketplace">
@@ -79,9 +80,10 @@ function App() {
             <Route path="/artists">
               <Artists />
             </Route>
-            <Route path="/">
+            <Route path="/" exact>
               <Home />
             </Route>
+            <Redirect to="/" />
           </Switch>
         </Container>
         <Footer />

@@ -14,15 +14,16 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import cx from "clsx";
 import Twitter from "@material-ui/icons/Twitter";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Alert from "@material-ui/lab/Alert";
 import Fade from "react-reveal/Fade";
 
 import { useHistory } from "react-router-dom";
-import useTempAuth from "../../../hooks/useTempAuth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isValidEmail } from "../../../utils";
-import { loginUserAction } from "../../../store/actions/auth";
+import { loginUserAction, resetAuthAction } from "../../../store/actions/auth";
 import { AUTH_LOGIN_SUCCESS } from "../../../store/actionTypes";
 import { MOCK_USER } from "../../../mocks/index";
+import useListenStatus from "../../../hooks/useListenStatus";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -82,6 +83,8 @@ export default function SignIn() {
     showPassword: false,
   });
 
+  const dispatch = useDispatch();
+
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -99,9 +102,6 @@ export default function SignIn() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [status, setStatus] = React.useState(null);
 
-  const history = useHistory();
-  const dispatch = useDispatch();
-
   const login = React.useCallback(() => {
     console.error(values);
     if (!isValidEmail(values.email)) {
@@ -115,15 +115,15 @@ export default function SignIn() {
     setStatus(null);
     setIsLoading(true);
     //TODO: Bypassing login for now
-    setTimeout(() => {
+    /* setTimeout(() => {
       dispatch({
         type: AUTH_LOGIN_SUCCESS,
         payload: { token: "TOKEN", user: MOCK_USER },
       });
       history.push("/marketplace");
-    }, 1500);
-    //const { id, ...payload } = values;
-    //dispatch(loginUserAction({ ...payload, id: values.email }));
+    }, 1500); */
+    const { id, ...payload } = values;
+    dispatch(loginUserAction({ ...payload, id: values.email }));
   }, [values, setStatus, setIsLoading, dispatch]);
 
   const handleSubmit = React.useCallback(
@@ -132,6 +132,28 @@ export default function SignIn() {
       login();
     },
     [login]
+  );
+
+  const history = useHistory();
+
+  const onSuccess = () => {
+    setStatus(null);
+    setIsLoading(false);
+    history.push("/marketplace");
+  };
+
+  const onFailure = () => {
+    setStatus("invalidLogin");
+    setIsLoading(false);
+  };
+
+  const authState = useSelector((state) => state.auth);
+
+  useListenStatus(
+    authState.auth_status,
+    onSuccess,
+    onFailure,
+    resetAuthAction({ auth_status: null })
   );
 
   return (
@@ -224,6 +246,9 @@ export default function SignIn() {
               }}
               error={status === "invalidPassword"}
             />
+            {status === "invalidLogin" && (
+              <Alert severity="error">Login failed!</Alert>
+            )}
             <Button
               type="submit"
               fullWidth

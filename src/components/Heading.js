@@ -16,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     "&::after": {
       position: "absolute",
-      height: 2,
+      height: 4,
       content: "''",
       width: "100%",
-      bottom: -2,
+      bottom: -4,
       left: 0,
-      borderBottom: `1px solid ${theme.palette.secondary.main}`,
-      borderTop: `1px solid ${theme.palette.text.primary}`,
+      borderBottom: `2px solid ${theme.palette.secondary.main}`,
+      borderTop: `2px solid ${theme.palette.text.primary}`,
     },
   },
   live: {
