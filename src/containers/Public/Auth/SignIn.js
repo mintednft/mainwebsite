@@ -84,6 +84,7 @@ export default function SignIn() {
   });
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -115,16 +116,16 @@ export default function SignIn() {
     setStatus(null);
     setIsLoading(true);
     //TODO: Bypassing login for now
-    /* setTimeout(() => {
+    setTimeout(() => {
       dispatch({
         type: AUTH_LOGIN_SUCCESS,
         payload: { token: "TOKEN", user: MOCK_USER },
       });
       history.push("/marketplace");
-    }, 1500); */
-    const { id, ...payload } = values;
-    dispatch(loginUserAction({ ...payload, id: values.email }));
-  }, [values, setStatus, setIsLoading, dispatch]);
+    }, 1500);
+    //const { id, ...payload } = values;
+    //dispatch(loginUserAction({ ...payload, id: values.email }));
+  }, [values, setStatus, setIsLoading, dispatch, history]);
 
   const handleSubmit = React.useCallback(
     (e) => {
@@ -133,8 +134,6 @@ export default function SignIn() {
     },
     [login]
   );
-
-  const history = useHistory();
 
   const onSuccess = () => {
     setStatus(null);

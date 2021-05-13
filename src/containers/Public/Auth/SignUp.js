@@ -30,6 +30,8 @@ import {
   resetAuthAction,
 } from "../../../store/actions/auth";
 import useListenStatus from "../../../hooks/useListenStatus";
+import { AUTH_REGISTRATION_SUCCESS } from "../../../store/actionTypes/index";
+import { MOCK_USER } from "../../../mocks/index";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -145,9 +147,17 @@ export default function SignIn() {
     }
     setStatus(null);
     setIsLoading(true);
-    const { emailAgain, ...payload } = values;
-    dispatch(registerUserAction({ ...payload, id: values.email }));
-  }, [values, termsRef, action, setStatus, setIsLoading, dispatch]);
+    //TODO: bypassing signup
+    setTimeout(() => {
+      dispatch({
+        type: AUTH_REGISTRATION_SUCCESS,
+        payload: { token: "TOKEN", user: MOCK_USER },
+      });
+      history.push("/question");
+    }, 1500);
+    //const { emailAgain, ...payload } = values;
+    //dispatch(registerUserAction({ ...payload, id: values.email }));
+  }, [values, termsRef, action, setStatus, setIsLoading, dispatch, history]);
 
   const handleSubmit = React.useCallback(
     (e) => {
@@ -162,7 +172,7 @@ export default function SignIn() {
   const onSuccess = () => {
     setStatus(null);
     setIsLoading(false);
-    history.push("/marketplace");
+    history.push("/question");
   };
 
   const onFailure = () => {

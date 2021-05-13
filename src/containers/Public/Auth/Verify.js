@@ -75,7 +75,7 @@ export default function SignIn() {
               variant="contained"
               className={cx(classes.button, classes.instagram)}
               component={Link}
-              to="/verify?type=influencer"
+              to="/marketplace"
               startIcon={<Instagram />}
             >
               Authorize Instagram
@@ -86,7 +86,7 @@ export default function SignIn() {
               variant="contained"
               className={cx(classes.button, classes.twitter)}
               component={Link}
-              to="/verify?type=artist"
+              to="/marketplace"
               startIcon={<Twitter />}
             >
               Authorize Twitter
